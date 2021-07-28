@@ -1,0 +1,122 @@
+/* GENERAL */
+
+.portrait-background {
+	position: absolute;
+}
+
+#portrait-bones div {
+	position: absolute;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+
+#images img {
+	position: absolute;
+}
+
+/* BONES */
+
+#bone-wheels {
+	left: 100px;
+	top: 400px;
+}
+
+#bone-body-tube {
+	left: 30px;
+	top: -36px;
+}
+
+#bone-body-tube.animated {
+	animation-name: anim-sway;
+}
+
+#bone-chest {
+	left: -60px;
+	top: -60px;
+}
+
+#bone-chest.animated {
+	animation-name: anim-sway;
+}
+
+#bone-right-arm {
+	transform-origin: -0px -20px;
+	left: 4px;
+	top: 20px;
+}
+
+#bone-right-arm.animated {
+	animation-name: anim-rot;
+}
+
+#bone-right-hand {
+	transform-origin: -10px 0px;
+	left: -10px;
+	top: 50px;
+}
+
+#bone-right-hand.animated {
+	animation-name: anim-rot;
+	animation-delay: 0.4s;
+}
+
+#bone-left-arm {
+	transform-origin: 0px -20px;
+	left: 126px;
+	top: 24px;
+}
+
+#portrait-bones #bone-left-arm.animated {
+	animation-direction: alternate-reverse !important;
+	animation-name: anim-rot;
+}
+
+#bone-left-hand {
+	transform-origin: -24px -4px;
+	left: 15px;
+	top: 38px;
+}
+
+#bone-left-hand.animated {
+	animation-direction: alternate-reverse !important;
+	animation-name: anim-rot;
+	animation-delay: 0.2s;
+}
+
+#bone-head {
+	left: -20px;
+	top: -200px;
+}
+
+#bone-head.animated {
+	animation-name: anim-sway;
+}
+
+#bone-face {
+	left: 76px;
+	top: 100px;
+}
+
+#bone-face.animated {
+	animation-name: anim-bob;
+	animation-duration: 3s !important;
+}
+
+/* ANIMATIONS */
+
+@keyframes anim-sway {
+	0% { transform: translate(-1px, 0px); }
+	100% { transform: translate(1px, 0px); }
+}
+
+@keyframes anim-bob {
+	0% { transform: translate(0px, -1px); }
+	100% { transform: translate(0px, 1px); }
+}
+
+@keyframes anim-rot {
+	0% { transform: rotate(20deg); }
+	100% { transform: rotate(-20deg); }
+}

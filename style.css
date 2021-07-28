@@ -1,0 +1,269 @@
+body {
+	margin: 0px;
+	overflow: hidden;
+	user-select: none;
+	color: #51ab2f;
+}
+
+#bg-tex, #bg-grd {
+	position: absolute;
+	width: calc(100% + 24px);
+	height: calc(100% + 12px);
+	left: -24px;
+	top: -12px;
+  z-index: -1;
+}
+
+#bg-tex {
+	background-blend-mode: multiply;
+	background-image: url(assets/background.png);
+}
+
+#bg-tex.animated {
+	animation-name: anim-bg-scroll;
+	-moz-animation-name: none; /* Performance tanks on Firefox, so background animation is disabled. */
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#bg-grd {
+	background-image: linear-gradient(to top, rgba(0, 128, 255, 0.5), rgba(0, 0, 0, 0));
+}
+
+@keyframes anim-bg-scroll {
+	0% {
+		transform: translate(0px, 0px);
+	}
+	100% {
+		transform: translate(24px, 12px);
+	}
+}
+
+#main-container {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+#open-settings-button {
+	position: absolute;
+	cursor: pointer;
+}
+
+#settings-container {
+	position: absolute;
+	width: 512px;
+	height: 512px;
+	background-image: url("assets/settings.png");
+	color: #51ab2f;
+}
+
+#settings-top {
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#settings-title {
+	padding-left: 16px;
+	font-size: 1.5em;
+}
+
+#close-settings-button {
+	cursor: pointer;
+}
+
+#settings-bottom {
+	padding: 16px;
+}
+
+.settings-section {
+	padding-bottom: 32px;
+}
+
+.settings-label {
+	font-size: 1.5em;
+	height: 48px;
+}
+
+.settings-options {
+	display: flex;
+	justify-content: right;
+}
+
+.settings-options div {
+  padding: 8px;
+	margin: 0 2px;
+	background-color: #0f2615;
+	border-radius: 8px;
+	line-height: 16px;
+	cursor: pointer;
+}
+
+.settings-options div.selected {
+	background-color: #186323;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.font-pixel {
+	font-family: "VT323";
+	font-size: 16pt;
+	line-height: 16pt;
+}
+
+.font-pixel > span {
+  position: relative;
+	top: 0px;
+}
+
+.font-standard {
+	font-family: "Open Sans";
+	font-weight: bold;
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+.font-standard span {
+  position: relative;
+	top: -1px;
+}
+
+.font-dyslexic {
+	font-family: "Open Dyslexic";
+	font-weight: bold;
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+.font-dyslexic span {
+  position: relative;
+	top: -3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+#game-container {
+	position: relative;
+	width: 1024px;
+	height: 768px;
+}
+
+#portrait-container {
+	position: absolute;
+	left: 16px;
+	top: 80px;
+	width: 288px;
+	height: 480px;
+	z-index: -1;
+}
+
+#scene-container {
+	position: absolute;
+	right: 16px;
+	top: 80px;
+	width: 688px;
+	height: 160px;
+	z-index: -1;
+	background-color: lightpink;
+}
+
+#cover {
+	pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+#dialogue-container {
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	width: 288px;
+	height: 192px;
+}
+
+#dialogue {
+	width: 90%;
+	margin: 5%;
+}
+
+#dialogue:before {
+	content: "> ";
+}
+
+#dialogue:after {
+	content: "|";
+	animation-name: anim-blink;
+	animation-timing-function: linear;
+	animation-direction: alternate;
+	animation-iteration-count: infinite;
+	animation-duration: 0.5s;
+}
+
+@keyframes anim-blink {
+	0% {
+		opacity: 0;
+	}
+	49% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+#gameplay-container {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	width: 688px;
+	height: 496px;
+}
