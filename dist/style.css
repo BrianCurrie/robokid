@@ -15,7 +15,6 @@ body {
 }
 
 #bg-tex {
-	background-blend-mode: multiply;
 	background-image: url(assets/background.png);
 }
 
