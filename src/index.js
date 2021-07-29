@@ -1,5 +1,7 @@
 import portrait from './portrait.js';
 import settings from './settings.js';
+import { scene, actor } from './scene.js';
+//import { actor } from './scene.js';
 
 {
 	document.getElementById('open-settings-button').onclick = () => {
