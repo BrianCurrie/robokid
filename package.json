@@ -1,16 +1,36 @@
 {
-  "name": "gamejam",
-  "version": "1.0.0",
-  "description": "TOP game jam",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@webpack-cli/generators": "^2.2.0",
-    "webpack": "^5.46.0",
-    "webpack-cli": "^4.7.2"
-  }
+	"name": "gamejam",
+	"version": "1.0.0",
+	"description": "TOP game jam",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@webpack-cli/generators": "^2.2.0",
+		"prettier": "^2.3.2",
+		"webpack": "^5.46.0",
+		"webpack-cli": "^4.7.2"
+	},
+	"prettier": {
+		"arrowParens": "always",
+		"bracketSpacing": true,
+		"embeddedLanguageFormatting": "auto",
+		"htmlWhitespaceSensitivity": "css",
+		"insertPragma": false,
+		"jsxBracketSameLine": false,
+		"jsxSingleQuote": false,
+		"printWidth": 80,
+		"proseWrap": "preserve",
+		"quoteProps": "as-needed",
+		"requirePragma": false,
+		"semi": true,
+		"singleQuote": true,
+		"tabWidth": 2,
+		"trailingComma": "es5",
+		"useTabs": true,
+		"vueIndentScriptAndStyle": false
+	}
 }
