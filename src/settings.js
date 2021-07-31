@@ -1,26 +1,25 @@
-import portrait from './portrait.js';
+import { portrait } from './portrait.js';
 
 const settings = (() => {
-
-						/* -------------- */
-						/* PUBLIC METHODS */
-						/* -------------- */
+	/* -------------- */
+	/* PUBLIC METHODS */
+	/* -------------- */
 
 	/**
 	 * Opens the settings window.
 	 * Sets the settings window's display style to "";
 	 */
 	const openSettings = () => {
-		document.getElementById("settings-container").style.display = "";
-	}
+		document.getElementById('settings-container').style.display = '';
+	};
 
 	/**
 	 * Closes the settings window.
 	 * Sets the settings window's display style to "none";
 	 */
 	const closeSettings = () => {
-		document.getElementById("settings-container").style.display = "none";
-	}
+		document.getElementById('settings-container').style.display = 'none';
+	};
 
 	/**
 	 * Sets the animation update rate.
@@ -51,12 +50,22 @@ const settings = (() => {
 				portrait.initBoneTracking(1);
 				break;
 		}
-		document.getElementById('animation-settings-options').children[0].classList.remove('selected');
-		document.getElementById('animation-settings-options').children[1].classList.remove('selected');
-		document.getElementById('animation-settings-options').children[2].classList.remove('selected');
-		document.getElementById('animation-settings-options').children[3].classList.remove('selected');
-		document.getElementById('animation-settings-options').children[setting].classList.add('selected');
-	}
+		document
+			.getElementById('animation-settings-options')
+			.children[0].classList.remove('selected');
+		document
+			.getElementById('animation-settings-options')
+			.children[1].classList.remove('selected');
+		document
+			.getElementById('animation-settings-options')
+			.children[2].classList.remove('selected');
+		document
+			.getElementById('animation-settings-options')
+			.children[3].classList.remove('selected');
+		document
+			.getElementById('animation-settings-options')
+			.children[setting].classList.add('selected');
+	};
 
 	/**
 	 * Sets the font choice.
@@ -84,11 +93,19 @@ const settings = (() => {
 				document.body.classList.add('font-dyslexic');
 				break;
 		}
-		document.getElementById('font-settings-options').children[0].classList.remove('selected');
-		document.getElementById('font-settings-options').children[1].classList.remove('selected');
-		document.getElementById('font-settings-options').children[2].classList.remove('selected');
-		document.getElementById('font-settings-options').children[setting].classList.add('selected');
-	}
+		document
+			.getElementById('font-settings-options')
+			.children[0].classList.remove('selected');
+		document
+			.getElementById('font-settings-options')
+			.children[1].classList.remove('selected');
+		document
+			.getElementById('font-settings-options')
+			.children[2].classList.remove('selected');
+		document
+			.getElementById('font-settings-options')
+			.children[setting].classList.add('selected');
+	};
 
 	/**
 	 * Sets the dialogue speed.
@@ -99,25 +116,34 @@ const settings = (() => {
 	 */
 	const setDialogueSpeed = (setting) => {
 		console.log('Dialogue speed set to ' + setting);
-		document.getElementById('dialogue-settings-options').children[0].classList.remove('selected');
-		document.getElementById('dialogue-settings-options').children[1].classList.remove('selected');
-		document.getElementById('dialogue-settings-options').children[2].classList.remove('selected');
-		document.getElementById('dialogue-settings-options').children[3].classList.remove('selected');
-		document.getElementById('dialogue-settings-options').children[setting].classList.add('selected');
-	}
+		document
+			.getElementById('dialogue-settings-options')
+			.children[0].classList.remove('selected');
+		document
+			.getElementById('dialogue-settings-options')
+			.children[1].classList.remove('selected');
+		document
+			.getElementById('dialogue-settings-options')
+			.children[2].classList.remove('selected');
+		document
+			.getElementById('dialogue-settings-options')
+			.children[3].classList.remove('selected');
+		document
+			.getElementById('dialogue-settings-options')
+			.children[setting].classList.add('selected');
+	};
 
-						/* -------- */
-						/* FINALIZE */
-						/* -------- */
+	/* -------- */
+	/* FINALIZE */
+	/* -------- */
 
 	return {
 		openSettings,
 		closeSettings,
 		setAnimationUpdateRate,
 		setFontChoice,
-		setDialogueSpeed
-	}
-
+		setDialogueSpeed,
+	};
 })();
 
-export default settings;
+export { settings };

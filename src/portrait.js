@@ -1,18 +1,19 @@
 const portrait = (() => {
-
 	const anchor = document.getElementById('portrait-container');
 	let bones = [];
 	let images = [];
 	let trackers = [];
 
-						/* ----------------- */
-						/* PUBLIC FUNCTIONS */
-						/* ----------------- */
+	/* ----------------- */
+	/* PUBLIC FUNCTIONS */
+	/* ----------------- */
 
 	/**
 	 * Initializes bone tracking.
-	 * Bone tracking is set for each bone and image using the private trackBone function.
-	 * @param {number} interval How frequently image position should update (1000/30 = 30 fps, etc).
+	 * Bone tracking is set for each bone and image using the private trackBone
+	 * function.
+	 * @param {number} interval How frequently image position should update
+	 * (1000/30 = 30 fps, etc).
 	 */
 	const initBoneTracking = (interval) => {
 		for (let i = 0; i < 9; i++) {
@@ -22,8 +23,8 @@ const portrait = (() => {
 			}, interval);
 		}
 		console.log(`Bone tracking initialized with interval of ${interval}`);
-	}
-	
+	};
+
 	/**
 	 * Enables bone animation.
 	 * Adds the "animated" css class to each bone div.
@@ -44,9 +45,9 @@ const portrait = (() => {
 		});
 	};
 
-						/* ----------------- */
-						/* PRIVATE FUNCTIONS */
-						/* ----------------- */
+	/* ----------------- */
+	/* PRIVATE FUNCTIONS */
+	/* ----------------- */
 
 	/**
 	 * Initializes the portrait object.
@@ -54,7 +55,6 @@ const portrait = (() => {
 	 * @access private
 	 */
 	const init = function () {
-
 		bones[0] = document.getElementById('bone-wheels');
 		bones[1] = document.getElementById('bone-body-tube');
 		bones[2] = document.getElementById('bone-chest');
@@ -76,7 +76,6 @@ const portrait = (() => {
 		images[8] = document.getElementById('img-face');
 
 		initBoneTracking(1000 / 60);
-
 	};
 
 	/**
@@ -86,24 +85,31 @@ const portrait = (() => {
 	 * @access private
 	 */
 	const trackBone = (id) => {
-		images[id].style.transform       = getComputedStyle(bones[id]).getPropertyValue('transform');
-		images[id].style.transformOrigin = getComputedStyle(bones[id]).getPropertyValue('transformOrigin');
-		images[id].style.left            = bones[id].getBoundingClientRect().left - anchor.getBoundingClientRect().left;
-		images[id].style.top             = bones[id].getBoundingClientRect().top - anchor.getBoundingClientRect().top;
-	}
+		images[id].style.transform = getComputedStyle(bones[id]).getPropertyValue(
+			'transform'
+		);
+		images[id].style.transformOrigin = getComputedStyle(
+			bones[id]
+		).getPropertyValue('transformOrigin');
+		images[id].style.left =
+			bones[id].getBoundingClientRect().left -
+			anchor.getBoundingClientRect().left;
+		images[id].style.top =
+			bones[id].getBoundingClientRect().top -
+			anchor.getBoundingClientRect().top;
+	};
 
-						/* -------- */
-						/* FINALIZE */
-						/* -------- */
+	/* -------- */
+	/* FINALIZE */
+	/* -------- */
 
 	init();
 
 	return {
 		initBoneTracking,
 		enableAnimations,
-		disableAnimations
-	}
-
+		disableAnimations,
+	};
 })();
 
-export default portrait;
+export { portrait };

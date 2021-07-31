@@ -1,5 +1,4 @@
 const actor = function () {
-
 	const MAXPOS_LEFT = 0 + 16;
 	const MAXPOS_RIGHT = 672 - 48;
 
@@ -7,12 +6,12 @@ const actor = function () {
 	let _posx = 0;
 	let _posy = 0;
 	let _facing = 1;
-	
+
 	let _action = null;
 
-						/* ---------------- */
-						/* PUBLIC FUNCTIONS */
-						/* ---------------- */
+	/* ---------------- */
+	/* PUBLIC FUNCTIONS */
+	/* ---------------- */
 
 	/**
 	 * Set the element that this actor controls.
@@ -35,9 +34,9 @@ const actor = function () {
 		return this;
 	}
 
-						/* ----------------- */
-						/* PRIVATE FUNCTIONS */
-						/* ----------------- */
+	/* ----------------- */
+	/* PRIVATE FUNCTIONS */
+	/* ----------------- */
 
 	/**
 	 * The actor's update loop.
@@ -60,9 +59,8 @@ const actor = function () {
 	 * TODO: Would like to have a non-random action queue in the future.
 	 */
 	function actionLoop() {
-	
 		clearInterval(_action);
-	
+
 		switch (Math.round(Math.random() * 2)) {
 			case 0: // Do nothing.
 				break;
@@ -74,18 +72,16 @@ const actor = function () {
 				jumpAction();
 				break;
 		}
-	
+
 		setTimeout(function () {
 			actionLoop();
 		}, 500 + Math.random() * 1500);
-	
 	}
 
 	/**
 	 * Moves the actor left or right at a random speed.
 	 */
 	function moveAction() {
-	
 		_action = setInterval(function () {
 			if (_posx < MAXPOS_LEFT) {
 				_posx = MAXPOS_LEFT;
@@ -98,14 +94,12 @@ const actor = function () {
 			}
 			_posx += _facing;
 		}, 15 + Math.random() * 10);
-	
 	}
 
 	/**
 	 * Makes the actor jump.
 	 */
 	function jumpAction() {
-	
 		_action = setInterval(function () {
 			if (_posy > -16) {
 				_posy -= 2;
@@ -120,53 +114,64 @@ const actor = function () {
 				}, 1);
 			}
 		}, 1);
-	
 	}
 
-						/* -------- */
-						/* FINALIZE */
-						/* -------- */
-	
+	/* -------- */
+	/* FINALIZE */
+	/* -------- */
+
 	return {
 		setElement,
-		commence
+		commence,
 	};
-
 };
 
 const scene = (() => {
-
 	let updateRate = 1000 / 60;
 
 	let actors = [];
 
-
-						/* ----------------- */
-						/* PRIVATE FUNCTIONS */
-						/* ----------------- */
+	/* ----------------- */
+	/* PRIVATE FUNCTIONS */
+	/* ----------------- */
 
 	/**
 	 * Initializes the scene.
 	 * Currently hard-coded.
 	 */
 	const init = () => {
-		actors.push(new actor().setElement(document.getElementById('robokid')).commence(updateRate));
-		actors.push(new actor().setElement(document.getElementById('kid1')).commence(updateRate));
-		actors.push(new actor().setElement(document.getElementById('kid2')).commence(updateRate));
-		actors.push(new actor().setElement(document.getElementById('kid3')).commence(updateRate));
-	}
+		actors.push(
+			new actor()
+				.setElement(document.getElementById('robokid'))
+				.commence(updateRate)
+		);
+		actors.push(
+			new actor()
+				.setElement(document.getElementById('kid1'))
+				.commence(updateRate)
+		);
+		actors.push(
+			new actor()
+				.setElement(document.getElementById('kid2'))
+				.commence(updateRate)
+		);
+		actors.push(
+			new actor()
+				.setElement(document.getElementById('kid3'))
+				.commence(updateRate)
+		);
+	};
 
-						/* -------- */
-						/* FINALIZE */
-						/* -------- */
+	/* -------- */
+	/* FINALIZE */
+	/* -------- */
 
 	init();
 
 	return this;
-
 })();
 
 export default {
 	scene,
-	actor
-}
+	actor,
+};
