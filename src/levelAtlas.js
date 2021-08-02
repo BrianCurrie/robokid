@@ -1,4 +1,4 @@
-import { level } from './level.js';
+import { Level } from './level.js';
 import { exampleWidget } from './widgets.js';
 
 /**
@@ -35,19 +35,47 @@ function levelAtlas() {
 
 	// Example Level
 	// Example Title - Example Topic
+	//levels.push(
+	//	new Level().set({
+	//		id: 0,
+	//		title: 'Example Title',
+	//		topic: 'Example Topic',
+	//		widget: new exampleWidget(),
+	//		progressionRequirements: ['Apple', 'Bee', 'Cat'],
+	//		dialogue: [
+	//			'The first stage\'s dialogue. The answer is "Apple"',
+	//			'Second dialogue, answer is "Bee"',
+	//			'Third, "Cat"',
+	//		],
+	//	})
+	//);
+	//levels.push(
+	//	new Level().set(
+	//		0,
+	//		'Example Title',
+	//		'Example Topic',
+	//		new exampleWidget(),
+	//		['Apple', 'Bee', 'Cat'],
+	//		[
+	//			'The first stage\'s dialogue. The answer is "Apple"',
+	//			'Second dialogue, answer is "Bee"',
+	//			'Third, "Cat"',
+	//		]
+	//	)
+	//);
 	levels.push(
-		new level().set({
-			id: 0,
-			title: 'Example Title',
-			topic: 'Example Topic',
-			widget: new exampleWidget(),
-			progressionRequirements: ['Apple', 'Bee', 'Cat'],
-			dialogue: [
+		new Level(
+			0,
+			'Example Title',
+			'Example Topic',
+			new exampleWidget(),
+			['Apple', 'Bee', 'Cat'],
+			[
 				'The first stage\'s dialogue. The answer is "Apple"',
 				'Second dialogue, answer is "Bee"',
 				'Third, "Cat"',
-			],
-		})
+			]
+		)
 	);
 
 	return levels;
