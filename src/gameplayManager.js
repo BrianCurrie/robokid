@@ -1,7 +1,7 @@
 import { portrait } from './portrait.js';
 import { settings } from './settings.js';
 import { scene, actor } from './scene.js';
-import { level } from './level.js';
+import { Level } from './level.js';
 import { levelAtlas } from './levelAtlas.js';
 
 /**
@@ -15,6 +15,8 @@ const gameplayManager = (() => {
 	const _dialogueContainer = $('dialogue');
 
 	let _levels = [];
+
+	let _dialogueMainText = '';
 
 	/* ------------------------ */
 	/*                          */
@@ -41,15 +43,29 @@ const gameplayManager = (() => {
 
 	/** @function setDialogue
 	 * @summary Sets the content of the dialogue box.
-	 * @desc Sets the content of the dialogue box, though if the passed message is
-	 * null it will set it as "DIALOGUE WAS NULL".
-	 * @author DTT
-	 * @access public
-	 * @default "DIALOGUE NOT NULL"
-	 * @param {string} msg The text to set it as.
+	 * @description Sets the content of the dialogue box. Options include {
+	 * duration }
+	 * @param {string} msg The text to set.
+	 * @param {object} opts Extra options.
 	 */
-	function setDialogue(msg) {
-		_dialogueContainer.innerText = msg || 'DIALOGUE WAS NULL';
+	function setDialogue(msg, opts) {
+		if (!msg) {
+			msg = '< Dialogue message was not set >';
+		}
+		if (!opts) {
+			opts = {};
+		}
+
+		if (opts.duration) {
+			setTimeout(() => {
+				setDialogue(_dialogueMainText);
+			}, opts.duration);
+		} else {
+			_dialogueMainText = msg;
+		}
+
+		_dialogueContainer.innerText = msg;
+		console.log(`Set dialogue to "${msg}"`);
 	}
 
 	/* ------------------------- */
@@ -80,7 +96,7 @@ const gameplayManager = (() => {
 	function generateLevelSelectHtml() {
 		_levelSelectItemsContainer.innerHTML = '';
 		_levels.forEach((lvl) => {
-			_levelSelectItemsContainer.appendChild(lvl.generateLevelSelectItemHtml());
+			_levelSelectItemsContainer.appendChild(lvl.generateHtml());
 		});
 	}
 
