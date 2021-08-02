@@ -8,12 +8,11 @@ import { levelAtlas } from './levelAtlas.js';
  * Manages the broad aspects of the gameplay section of the game.
  */
 const gameplayManager = (() => {
-	const _gameplayContainer = document.getElementById('gameplay-container');
-	const _levelSelectContainer = document.getElementById(
-		'level-select-container'
-	);
-	const _levelSelectItemsContainer =
-		document.getElementById('level-select-items');
+	const $ = (id) => document.getElementById(id);
+	const _gameplayContainer = $('gameplay-container');
+	const _levelSelectContainer = $('level-select-container');
+	const _levelSelectItemsContainer = $('level-select-items');
+	const _dialogueContainer = $('dialogue');
 
 	let _levels = [];
 
@@ -38,6 +37,19 @@ const gameplayManager = (() => {
 	function finishLevel() {
 		generateLevelSelectHtml();
 		enterLevelSelect();
+	}
+
+	/** @function setDialogue
+	 * @summary Sets the content of the dialogue box.
+	 * @desc Sets the content of the dialogue box, though if the passed message is
+	 * null it will set it as "DIALOGUE WAS NULL".
+	 * @author DTT
+	 * @access public
+	 * @default "DIALOGUE NOT NULL"
+	 * @param {string} msg The text to set it as.
+	 */
+	function setDialogue(msg) {
+		_dialogueContainer.innerText = msg || 'DIALOGUE WAS NULL';
 	}
 
 	/* ------------------------- */
@@ -99,6 +111,7 @@ const gameplayManager = (() => {
 	return {
 		beginLevel,
 		finishLevel,
+		setDialogue,
 	};
 })();
 

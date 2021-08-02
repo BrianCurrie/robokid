@@ -13,6 +13,8 @@ const level = function () {
 	let _currentStage = 0;
 	let _progressionRequirements = [];
 
+	let _dialogue = [];
+
 	let _locked = false;
 	let _completed = false;
 
@@ -55,6 +57,7 @@ const level = function () {
 			_topic = obj.topic;
 			_widget = obj.widget;
 			_progressionRequirements = obj.progressionRequirements;
+			_dialogue = obj.dialogue;
 			return this;
 		}
 	}
@@ -113,6 +116,8 @@ const level = function () {
 			_currentStage++;
 			if (_currentStage > _progressionRequirements.length - 1) {
 				finish();
+			} else {
+				gameplayManager.setDialogue(_dialogue[_currentStage]);
 			}
 		} else {
 			console.log('Submission attempt had incorrect answer.');
@@ -139,6 +144,7 @@ const level = function () {
 			document
 				.getElementById('gameplay-container')
 				.appendChild(_widget.generateHtml());
+			gameplayManager.setDialogue(_dialogue[_currentStage]);
 		} else {
 			console.log('Level widget was null!');
 		}
@@ -151,6 +157,7 @@ const level = function () {
 	function finish() {
 		console.log('Level finished.');
 		_completed = true;
+		gameplayManager.setDialogue(`Level ${_id} complete, good job!`);
 		gameplayManager.finishLevel();
 	}
 

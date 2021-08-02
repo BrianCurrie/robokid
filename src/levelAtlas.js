@@ -35,17 +35,22 @@ function levelAtlas() {
 
 	// Example Level
 	// Example Title - Example Topic
-	levels.push(new level().set({
-		id: 0,
-		title: 'Example Title',
-		topic: 'Example Topic',
-		widget: new exampleWidget(),
-		progressionRequirements: ['a', 'b', 'c']
-	}));
+	levels.push(
+		new level().set({
+			id: 0,
+			title: 'Example Title',
+			topic: 'Example Topic',
+			widget: new exampleWidget(),
+			progressionRequirements: ['Apple', 'Bee', 'Cat'],
+			dialogue: [
+				'The first stage\'s dialogue. The answer is "Apple"',
+				'Second dialogue, answer is "Bee"',
+				'Third, "Cat"',
+			],
+		})
+	);
 
 	return levels;
 }
 
-export {
-	levelAtlas
-};
+export { levelAtlas };
