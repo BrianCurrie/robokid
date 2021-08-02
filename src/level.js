@@ -1,21 +1,20 @@
 import { gameplayManager } from './gameplayManager.js';
 import { exampleWidget } from './widgets.js';
 
-/** @class Level
- * @summary Represents a level.
- * @classdesc	Holds all the information representing a level in the game with
- * functions to track progress through the level.
- * @author DTT
- * @access public
- * @param {Number} _id The level's unique id.
- * @param {string} _title The level's title.
- * @param {string} _topic The level's educational topic
- * @param {any} _widget An instance of the widget the level uses.
- * @param {Array} _answers An array of answers the level uses for progression.
- * @param {Array} _dialogue An array of strings the level uses for dialogue.
+/**
+ * A function representing a level object.
  */
-function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
+const level = function () {
+	let _id = -1;
+	let _title = 'no title';
+	let _topic = 'no topic';
+	let _widget = null;
+
 	let _currentStage = 0;
+	let _progressionRequirements = [];
+
+	let _dialogue = [];
+
 	let _locked = false;
 	let _completed = false;
 
@@ -25,99 +24,104 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	/*                          */
 	/* ------------------------ */
 
-	/** @function getId
-	 * @summary Gets the Level's id.
-	 * @acess public
+	/**
+	 * Gets the level's id.
 	 */
 	function getId() {
 		return _id;
 	}
 
-	/** @function isLocked
-	 * @summary Checks if the Level is locked or not.
-	 * @access public
+	/**
+	 * Sets all data required at level created via an object, detailed as such:
+	 *
+	 * - id - The id number of the level, a positive integer which should climb up
+	 * from 0 along with other levels created.
+	 * - title - The title of the level, something very short and witty.
+	 * - topic - The educational topic of the level, also short and to the point.
+	 * - widget - A widget object instance the level will be using.
+	 * - progressionRequirements - The collection (array) of requirements for
+	 * progressing through the level's stages. The values can be whatever you
+	 * want, they are checked against the widget's submissions for progression. If
+	 * the first requirement is "Apple" and the widget submits "Apple" in the
+	 * first stage, then it will progress to the second stage.
+	 *
+	 * @param {object} obj The object of data.
 	 */
-	function isLocked() {
-		return _locked;
-	}
-
-	/** @function isCompleted
-	 * @summary Checks if the Level is completed or not.
-	 * @access public
-	 */
-	function isCompleted() {
-		return _completed;
-	}
-
-	/** @function generateHtml
-	 * @summary Generates html representing this Level as a level select block.
-	 * @access public
-	 */
-	function generateHtml() {
-		let root = document.createElement('div');
-		root.classList.add('level-select-item');
-		root.id = `level-select-item-${_id}`;
-
-		let title = document.createElement('div');
-		title.classList.add('level-select-item-title');
-		title.innerText = _title;
-
-		let topic = document.createElement('div');
-		topic.classList.add('level-select-item-topic');
-		topic.innerText = _topic;
-
-		root.appendChild(title);
-		root.appendChild(topic);
-
-		if (_completed) {
-			root.classList.add('level-select-item-completed');
-		} else if (!_locked) {
-			root.onclick = () => {
-				gameplayManager.beginLevel(_id);
-			};
+	function set(obj) {
+		if ((obj.id && obj.title && obj.topic && obj.widget) == null) {
+			console.log('Object passed in level creation set had null property.');
+			return null;
 		} else {
-			root.classList.add('level-select-item-locked');
+			_id = obj.id;
+			_title = obj.title;
+			_topic = obj.topic;
+			_widget = obj.widget;
+			_progressionRequirements = obj.progressionRequirements;
+			_dialogue = obj.dialogue;
+			return this;
 		}
-
-		return root;
 	}
 
-	/** @function submit
-	 * @summary Handles answer checking and progression.
-	 * @description Checks the submission to the current stage's answer, and if
-	 * it's correct it will progress to the next stage of the level.
-	 * @access public
-	 * @param {any} submission The submission to be checked.
+	/**
+	 * Generates an html element representing the level as a level selection
+	 * element for the gameplay manager to use. Is only ever called from the
+	 * gameplay manager.
+	 */
+	function generateLevelSelectItemHtml() {
+		//	<div id="level-select-item">
+		//		<div id="level-select-item-title">
+		//		</div>
+		//		<div id="level-select-item-topic">
+		//		</div>
+		//	</div>
+
+		let elTitle = document.createElement('div');
+		elTitle.classList.add('level-select-item-title');
+		elTitle.innerText = _title;
+
+		let elTopic = document.createElement('div');
+		elTopic.classList.add('level-select-item-topic');
+		elTopic.innerText = _topic;
+
+		let elItem = document.createElement('div');
+		elItem.classList.add('level-select-item');
+		elItem.id = `level-select-item-${_id}`;
+
+		elItem.appendChild(elTitle);
+		elItem.appendChild(elTopic);
+
+		elItem.onclick = () => {
+			gameplayManager.beginLevel(_id);
+		};
+
+		return elItem;
+	}
+
+	/**
+	 * Submits data as an attempt to progress through the level's progression
+	 * requirements. Used frequently by the level's widget.
+	 * @param {any} submission The submission to check with.
 	 */
 	function submit(submission) {
 		if (_completed) {
 			console.log('This level is already complete.');
-		} else if (submission == _answers[_currentStage]) {
+			return;
+		}
+		console.log('Requirement: ' + _progressionRequirements[_currentStage]);
+		console.log('Submission: ' + submission);
+		if (submission == _progressionRequirements[_currentStage]) {
+			console.log(
+				'Submission attempt had correct answer - Level stage progressed'
+			);
 			_currentStage++;
-			if (_currentStage > _answers.length - 1) {
+			if (_currentStage > _progressionRequirements.length - 1) {
 				finish();
 			} else {
 				gameplayManager.setDialogue(_dialogue[_currentStage]);
 			}
-			gameplayManager.setDialogue('Correct answer!', { duration: 2000 });
 		} else {
-			gameplayManager.setDialogue('Wrong answer!', { duration: 2000 });
+			console.log('Submission attempt had incorrect answer.');
 		}
-	}
-
-	/** @function begin
-	 * @summary Begins the level.
-	 * @description Begins the level, setting up communication with the widget and
-	 * drawing it, as well as setting the dialogue
-	 * @access public
-	 */
-	function begin() {
-		document.getElementById('gameplay-container').innerHTML = '';
-		_widget.setLevel(this);
-		document
-			.getElementById('gameplay-container')
-			.appendChild(_widget.generateHtml());
-		gameplayManager.setDialogue(_dialogue[_currentStage]);
 	}
 
 	/* ------------------------- */
@@ -126,10 +130,29 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	/*                           */
 	/* ------------------------- */
 
-	/** @function finish
-	 * @summary Finishes the level.
-	 * @description Sets the level as completed and returns to level select.
-	 * @access private
+	/**
+	 * Begins the level, sets up communication with the widget and draws it.
+	 * @param {level} lvl Due to a weird issue with setting the level's widget, the
+	 * variable representing the level itself must be passed so it may be passed
+	 * onto the widget.
+	 */
+	function begin(lvl) {
+		console.log(`Level ${_id} began.`);
+		document.getElementById('gameplay-container').innerHTML = '';
+		if (_widget != null) {
+			_widget.setLevel(lvl);
+			document
+				.getElementById('gameplay-container')
+				.appendChild(_widget.generateHtml());
+			gameplayManager.setDialogue(_dialogue[_currentStage]);
+		} else {
+			console.log('Level widget was null!');
+		}
+	}
+
+	/**
+	 * Finished the level, setting it as completed, then returns to level
+	 * selection.
 	 */
 	function finish() {
 		console.log('Level finished.');
@@ -145,11 +168,12 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	/* ---------------- */
 
 	return {
+		set,
 		getId,
-		generateHtml,
+		generateLevelSelectItemHtml,
 		begin,
 		submit,
 	};
-}
+};
 
-export { Level };
+export { level };
