@@ -29,7 +29,8 @@ function levelAtlas() {
 			'Introduction to binary',
 			new binaryWidget(),
 			['1', '5', '198'],
-			['Write 1 in binary', 'Write 5 in binary', 'Write 198 in binary']
+			['Write 1 in binary', 'Write 5 in binary', 'Write 198 in binary'],
+			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
 		)
 	);
 
@@ -44,7 +45,8 @@ function levelAtlas() {
 				'What is "a" in binary?',
 				'What is "A" in binary?',
 				'What is "Hello world!" in binary?',
-			]
+			],
+			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
 		)
 	);
 

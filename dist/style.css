@@ -297,18 +297,6 @@ body {
 	background-image: url('./assets/back-button-pressed.png');
 }
 
-#question-button {
-	position: absolute;
-	width: 64px;
-	height: 64px;
-	cursor: pointer;
-	background-image: url('./assets/question-button.png');
-}
-
-#question-button:active {
-	background-image: url('./assets/question-button-pressed.png');
-}
-
 .level-select-open-animation {
 	animation: level-select-open 1s ease-in-out forwards;
 }
@@ -334,3 +322,126 @@ body {
 		transform: translateX(100%);
 	}
 }
+
+.level-select-hide-animation {
+	animation: level-select-hide 1s ease-in-out forwards;
+}
+
+@keyframes level-select-hide {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(calc(100% + 64px));
+	}
+}
+
+.level-select-reveal-animation {
+	animation: level-select-reveal 1s ease-in-out forwards;
+}
+
+@keyframes level-select-reveal {
+	0% {
+		transform: translateX(calc(100% + 64px));
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* -- LEVEL INFO SECTION -- */
+
+#level-info-container {
+	position: absolute;
+	width: 688px;
+	height: 496px;
+	background-color: #2f362d;
+}
+
+#level-info-content {
+	position: absolute;
+	width: 688px;
+	height: 496px;
+	padding: 32px;
+}
+
+#level-info-open-button {
+	position: absolute;
+	left: 100%;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	background-image: url('./assets/question-button.png');
+}
+
+#level-info-open-button:active {
+	background-image: url('./assets/question-button-pressed.png');
+}
+
+#level-info-return-button {
+	background-image: url('./assets/back-button.png');
+	position: absolute;
+	left: calc(100% - 64px);
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+}
+
+#level-info-return-button:active {
+	background-image: url('./assets/back-button-pressed.png');
+}
+
+.level-info-open-animation {
+	animation: level-info-open 1s ease-in-out forwards;
+}
+
+@keyframes level-info-open {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+.level-info-close-animation {
+	animation: level-info-close 1s ease-in-out forwards;
+}
+
+@keyframes level-info-close {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+.level-info-hide-animation {
+	animation: level-info-hide 1s ease-in-out forwards;
+}
+
+@keyframes level-info-hide {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(calc(-100% - 64px));
+	}
+}
+
+.level-info-reveal-animation {
+	animation: level-info-reveal 1s ease-in-out forwards;
+}
+
+@keyframes level-info-reveal {
+	0% {
+		transform: translateX(calc(-100% - 64px));
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+/* -- / LEVEL INFO SECTION -- */
+

@@ -9,6 +9,7 @@ const GameplayManager = (() => {
 	const _gameplayContainer = $('gameplay-container');
 	const _levelSelectContainer = $('level-select-container');
 	const _levelSelectItemsContainer = $('level-select-items');
+	const _levelInfoContainer = $('level-info-container');
 	const _dialogueContainer = $('dialogue');
 
 	let _levels = [];
@@ -87,6 +88,12 @@ const GameplayManager = (() => {
 		document.getElementById('level-select-open-button').onclick = function () {
 			enterLevelSelect();
 		};
+		document.getElementById('level-info-open-button').onclick = function () {
+			enterLevelInfo();
+		};
+		document.getElementById('level-info-return-button').onclick = function () {
+			exitLevelInfo();
+		};
 
 		enterLevelSelect();
 		_levelSelectContainer.classList.remove('level-select-open-animation');
@@ -108,8 +115,10 @@ const GameplayManager = (() => {
 	 * @access private
 	 */
 	function enterLevelSelect() {
-		_levelSelectContainer.classList.remove('level-select-close-animation');
+		_levelSelectContainer.className = '';
 		_levelSelectContainer.classList.add('level-select-open-animation');
+		_levelInfoContainer.className = '';
+		_levelInfoContainer.classList.add('level-info-hide-animation');
 	}
 
 	/** @function exitLevelSelect
@@ -117,8 +126,24 @@ const GameplayManager = (() => {
 	 * @access private
 	 */
 	function exitLevelSelect() {
-		_levelSelectContainer.classList.remove('level-select-open-animation');
+		_levelSelectContainer.className = '';
 		_levelSelectContainer.classList.add('level-select-close-animation');
+		_levelInfoContainer.className = '';
+		_levelInfoContainer.classList.add('level-info-reveal-animation');
+	}
+
+	function enterLevelInfo() {
+		_levelInfoContainer.className = '';
+		_levelInfoContainer.classList.add('level-info-open-animation');
+		_levelSelectContainer.className = '';
+		_levelSelectContainer.classList.add('level-select-hide-animation');
+	}
+
+	function exitLevelInfo() {
+		_levelInfoContainer.className = '';
+		_levelInfoContainer.classList.add('level-info-close-animation');
+		_levelSelectContainer.className = '';
+		_levelSelectContainer.classList.add('level-select-reveal-animation');
 	}
 
 	/* ---------------- */

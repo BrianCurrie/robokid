@@ -12,7 +12,7 @@ import { GameplayManager } from './gameplayManager.js';
  * @param {Array} _answers An array of answers the level uses for progression.
  * @param {Array} _dialogue An array of strings the level uses for dialogue.
  */
-function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
+function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 	let _currentStage = 0;
 	let _locked = false;
 	let _completed = false;
@@ -111,13 +111,17 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	 */
 	function begin() {
 		document.getElementById('gameplay-container').innerHTML = '';
-		const questionButton = document.createElement('div');
-		questionButton.id = 'question-button';
-		document.getElementById('gameplay-container').appendChild(questionButton);
 		_widget.setLevel(this);
 		document
 			.getElementById('gameplay-container')
 			.appendChild(_widget.generateHtml());
+		if (_info) {
+			if (typeof _info == 'object') {
+				document.getElementById('level-info-content').appendChild(_info);
+			} else if (typeof _info == 'string') {
+				document.getElementById('level-info-content').innerText = _info;
+			}
+		}
 		GameplayManager.setDialogue(_dialogue[_currentStage]);
 	}
 
