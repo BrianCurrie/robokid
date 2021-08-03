@@ -1,3 +1,17 @@
+.submit-button {
+	margin-top: 16px;
+	width: 128px;
+	height: 64px;
+	background-image: url('./assets/widgets/large-button.png');
+	text-align: center;
+	padding-top: 20px;
+	cursor: pointer;
+}
+
+.submit-button:active {
+	background-image: url('./assets/widgets/large-button-pressed.png');
+}
+
 /*******
     Intro to binary widget
 ********/
@@ -51,20 +65,6 @@
 	background-image: url('./assets/widgets/minus-button-pressed.png');
 }
 
-#binary-widget-submit-button {
-	margin-top: 16px;
-	width: 128px;
-	height: 64px;
-	background-image: url('./assets/widgets/large-button.png');
-	text-align: center;
-	padding-top: 20px;
-	cursor: pointer;
-}
-
-#binary-widget-submit-button:active {
-	background-image: url('./assets/widgets/large-button-pressed.png');
-}
-
 #binary-widget-value-display {
 	width: 64px;
 	height: 64px;
@@ -91,4 +91,22 @@
 	text-align: center;
 	min-height: 1rem;
 	margin: 1rem;
+}
+
+/*******
+    RGB widget
+********/
+
+#RGB-widget-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#RGB-widget-color-display {
+	height: 100px;
+	width: 200px;
+	margin: 16px 0px;
 }
