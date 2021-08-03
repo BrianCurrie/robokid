@@ -1,0 +1,44 @@
+/*******
+    Intro to binary widget
+********/
+
+#binary-widget-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#binary-widget-toggle-digits {
+	display: flex;
+}
+
+.digit-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.digit {
+	text-align: center;
+	padding: 10px;
+}
+
+/*******
+    Converting binary widget
+********/
+
+#convert-widget-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin: 0 30px;
+}
+
+#convert-widget-output {
+	text-align: center;
+	min-height: 1rem;
+	margin: 1rem;
+}

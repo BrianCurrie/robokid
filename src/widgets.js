@@ -66,4 +66,153 @@ const exampleWidget = function () {
 	};
 };
 
-export { exampleWidget };
+const binaryWidget = function () {
+	let _level = null;
+	const totalDigits = 8;
+
+	function setLevel(level) {
+		_level = level;
+	}
+
+	function generateHtml() {
+		const container = document.createElement('div');
+		container.id = 'binary-widget-container';
+
+		const valueDisplay = document.createElement('div');
+		valueDisplay.id = 'binary-widget-value-display';
+		valueDisplay.innerText = '0';
+
+		const toggleDigits = document.createElement('div');
+		toggleDigits.id = 'binary-widget-toggle-digits';
+
+		const submitButton = document.createElement('div');
+		submitButton.id = 'binary-widget-submit-button';
+		submitButton.innerText = 'Submit';
+		submitButton.onclick = () => {
+			submit();
+		};
+
+		container.appendChild(valueDisplay);
+		container.appendChild(toggleDigits);
+		container.appendChild(submitButton);
+
+		for (let i = 0; i < totalDigits; i++) {
+			let digitContainer = document.createElement('div');
+			let plus = document.createElement('button');
+			let digit = document.createElement('div');
+			let minus = document.createElement('button');
+
+			digitContainer.classList.add('digit-container');
+			digit.classList.add('digit');
+
+			plus.innerText = '+';
+			digit.innerText = '0';
+			minus.innerText = '-';
+
+			digitContainer.appendChild(plus);
+			digitContainer.appendChild(digit);
+			digitContainer.appendChild(minus);
+			toggleDigits.appendChild(digitContainer);
+
+			plus.addEventListener('click', () => {
+				if (digit.innerText === '0') {
+					binaryArr[i] = 1;
+					digit.innerText = '1';
+					displayDec();
+				}
+			});
+
+			minus.addEventListener('click', () => {
+				if (digit.innerText === '1') {
+					binaryArr[i] = 0;
+					digit.innerText = '0';
+					displayDec();
+				}
+			});
+		}
+
+		return container;
+	}
+
+	let binaryArr = (() => {
+		let nums = [];
+		for (let i = 0; i < totalDigits; i++) {
+			nums.push(0);
+		}
+		return nums;
+	})();
+
+	function displayDec() {
+		const val = document.getElementById('binary-widget-value-display');
+		val.innerText = parseInt(binaryArr.join(''), 2);
+	}
+
+	function submit() {
+		const submission = parseInt(binaryArr.join(''), 2);
+		_level.submit(submission);
+	}
+
+	return {
+		generateHtml,
+		setLevel,
+	};
+};
+
+const binaryConvertWidget = function () {
+	let _level = null;
+
+	function setLevel(level) {
+		_level = level;
+	}
+
+	function generateHtml() {
+		const container = document.createElement('div');
+		container.id = 'convert-widget-container';
+
+		const input = document.createElement('input');
+		input.id = 'convert-widget-input';
+		input.placeholder = 'Text to binary';
+
+		const output = document.createElement('div');
+		output.id = 'convert-widget-output';
+
+		const submitButton = document.createElement('div');
+		submitButton.id = 'binary-widget-submit-button';
+		submitButton.innerText = 'Submit';
+		submitButton.onclick = () => {
+			submit();
+		};
+
+		container.appendChild(input);
+		container.appendChild(output);
+		container.appendChild(submitButton);
+
+		input.addEventListener('input', () => {
+			const binary = input.value;
+			output.innerText = textToBinary(binary);
+		});
+
+		return container;
+	}
+
+	function textToBinary(text) {
+		let output = '';
+		for (let i = 0; i < text.length; i++) {
+			output += text.charCodeAt(i).toString(2) + ' ';
+		}
+		return output.trim();
+	}
+
+	function submit() {
+		const submission = document.getElementById('convert-widget-input').value;
+		console.log(submission);
+		_level.submit(submission);
+	}
+
+	return {
+		generateHtml,
+		setLevel,
+	};
+};
+
+export { exampleWidget, binaryWidget, binaryConvertWidget };

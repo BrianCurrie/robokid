@@ -1,148 +1,140 @@
 <html>
-<head>
-	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="portrait-styles.css" />
-	<link rel="stylesheet" href="scene-styles.css" />
-	<link rel="preconnect" href="https://github.com" crossorigin />
-	<link rel="stylesheet" href="opendyslexic.css" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-</head>
-<body class="font-pixel">
-	<div id="bg-tex" class="animated"></div>
-	<div id="bg-grd"></div>
-	<span style="position: absolute;">Chrome / Edge recommended.</span>
-	<div id="main-container">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="portrait-styles.css" />
+		<link rel="stylesheet" href="scene-styles.css" />
+		<link rel="stylesheet" href="widgets.css" />
+		<link rel="preconnect" href="https://github.com" crossorigin />
+		<link rel="stylesheet" href="opendyslexic.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=VT323&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="font-pixel">
+		<div id="bg-tex" class="animated"></div>
+		<div id="bg-grd"></div>
+		<span style="position: absolute">Chrome / Edge recommended.</span>
+		<div id="main-container">
+			<!-- Game -->
+			<div id="game-container">
+				<!-- Portrait -->
+				<div id="portrait-container" class="animated">
+					<img class="portrait-background" src="assets/portrait/bg.png" />
 
-		<!-- Game -->
-		<div id="game-container">
-
-			<!-- Portrait -->
-			<div id="portrait-container" class="animated">
-
-				<img class="portrait-background" src="assets/portrait/bg.png" />
-
-				<div id="portrait-bones">
-					<div id="bone-wheels" class="animated">
-						<div id="bone-body-tube" class="animated">
-							<div id="bone-chest" class="animated">
-								<div id="bone-right-arm" class="animated">
-									<div id="bone-right-hand" class="animated"></div>
-								</div>
-								<div id="bone-left-arm" class="animated">
-									<div id="bone-left-hand" class="animated"></div>
-								</div>
-								<div id="bone-head" class="animated">
-									<div id="bone-face" class="animated"></div>
+					<div id="portrait-bones">
+						<div id="bone-wheels" class="animated">
+							<div id="bone-body-tube" class="animated">
+								<div id="bone-chest" class="animated">
+									<div id="bone-right-arm" class="animated">
+										<div id="bone-right-hand" class="animated"></div>
+									</div>
+									<div id="bone-left-arm" class="animated">
+										<div id="bone-left-hand" class="animated"></div>
+									</div>
+									<div id="bone-head" class="animated">
+										<div id="bone-face" class="animated"></div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div id="images">
+						<img id="img-body-tube" src="assets/portrait/body-tube.png" />
+						<img id="img-wheels" src="assets/portrait/wheels.png" />
+						<img id="img-right-arm" src="assets/portrait/right-arm.png" />
+						<img id="img-left-arm" src="assets/portrait/left-arm.png" />
+						<img id="img-left-hand" src="assets/portrait/left-hand.png" />
+						<img id="img-right-hand" src="assets/portrait/right-hand.png" />
+						<img id="img-chest" src="assets/portrait/chest.png" />
+						<img id="img-head" src="assets/portrait/head.png" />
+						<img id="img-face" src="assets/portrait/face.png" />
+					</div>
+				</div>
+				<!-- / Portrait -->
+
+				<!-- Dialogue -->
+				<div id="dialogue-container">
+					<div id="dialogue">
+						This is text dialogue. Text that robokid speaks will go here.
+					</div>
+				</div>
+				<!-- / Dialogue -->
+
+				<!-- Scene -->
+				<div id="scene-container">
+					<img class="kid" id="robokid" src="assets/scene/robokid.png" />
+					<img class="kid" id="kid1" src="assets/scene/kid1.png" />
+					<img class="kid" id="kid2" src="assets/scene/kid2.png" />
+					<img class="kid" id="kid3" src="assets/scene/kid3.png" />
+				</div>
+				<!-- / Scene -->
+
+				<!-- Interactive -->
+				<div id="interactive-container">
+					<!-- Gameplay -->
+					<div id="gameplay-container"></div>
+					<!-- / Gameplay -->
+
+					<!-- Level Select -->
+					<div id="level-select-container">
+						<div id="level-select-open-button"></div>
+						<div id="level-select-title">Level Select</div>
+						<div id="level-select-items"></div>
+					</div>
+					<!-- / Level Select -->
+				</div>
+				<!-- / Interactive -->
+
+				<img id="open-settings-button" src="assets/cog.png" />
+				<img id="cover" src="assets/cover.png" />
+			</div>
+
+			<!-- Settings -->
+			<div id="settings-container" style="display: none">
+				<div id="settings-top">
+					<div id="settings-title">Settings</div>
+					<div id="close-settings-button"><img src="assets/X.png" /></div>
 				</div>
 
-				<div id="images">
-					<img id="img-body-tube" src="assets/portrait/body-tube.png" />
-					<img id="img-wheels" src="assets/portrait/wheels.png" />
-					<img id="img-right-arm" src="assets/portrait/right-arm.png" />
-					<img id="img-left-arm" src="assets/portrait/left-arm.png" />
-					<img id="img-left-hand" src="assets/portrait/left-hand.png" />
-					<img id="img-right-hand" src="assets/portrait/right-hand.png" />
-					<img id="img-chest" src="assets/portrait/chest.png" />
-					<img id="img-head" src="assets/portrait/head.png" />
-					<img id="img-face" src="assets/portrait/face.png" />
+				<div id="settings-bottom">
+					<div id="animation-settings" class="settings-section">
+						<div class="settings-label">Animation Quality</div>
+						<div id="animation-settings-options" class="settings-options">
+							<div><span>Off</span></div>
+							<div><span>10fps</span></div>
+							<div class="selected"><span>30fps</span></div>
+							<div><span>Unlimited</span></div>
+						</div>
+					</div>
+
+					<div id="font-settings" class="settings-section">
+						<div class="settings-label">Font</div>
+						<div id="font-settings-options" class="settings-options">
+							<div class="font-pixel selected"><span>VT323</span></div>
+							<div class="font-standard"><span>Open Sans</span></div>
+							<div class="font-dyslexic"><span>Open Dyslexic</span></div>
+						</div>
+					</div>
+
+					<div id="dialogue-settings" class="settings-section">
+						<div class="settings-label">Text Display Speed</div>
+						<div id="dialogue-settings-options" class="settings-options">
+							<div><span>Off</span></div>
+							<div><span>Slow</span></div>
+							<div class="selected"><span>Med</span></div>
+							<div><span>Fast</span></div>
+						</div>
+					</div>
 				</div>
-
 			</div>
-			<!-- / Portrait -->
-
-			<!-- Dialogue -->
-			<div id="dialogue-container">
-				<div id="dialogue">This is text dialogue. Text that robokid speaks will go here.</div>
-			</div>
-			<!-- / Dialogue -->
-
-			<!-- Scene -->
-			<div id="scene-container">
-				<img class="kid" id="robokid" src="assets/scene/robokid.png" />
-				<img class="kid" id="kid1" src="assets/scene/kid1.png" />
-				<img class="kid" id="kid2" src="assets/scene/kid2.png" />
-				<img class="kid" id="kid3" src="assets/scene/kid3.png" />
-			</div>
-			<!-- / Scene -->
-
-			<!-- Interactive -->
-			<div id="interactive-container">
-
-				<!-- Gameplay -->
-				<div id="gameplay-container">
-
-				</div>
-				<!-- / Gameplay -->
-
-				<!-- Level Select -->
-				<div id="level-select-container">
-					<div id="level-select-open-button"></div>
-					<div id="level-select-title">Level Select</div>
-					<div id="level-select-items"></div>
-				</div>
-				<!-- / Level Select -->
-
-			</div>
-			<!-- / Interactive -->
-
-			<img id="open-settings-button" src="assets/cog.png" />
-			<img id="cover" src="assets/cover.png" />
-
+			<!-- / Settings -->
 		</div>
 
-		<!-- Settings -->
-		<div id="settings-container" style="display: none;">
-
-			<div id="settings-top">
-				<div id="settings-title">Settings</div>
-				<div id="close-settings-button"><img src="assets/X.png" /></div>
-			</div>
-
-			<div id="settings-bottom">
-
-				<div id="animation-settings" class="settings-section">
-					<div class="settings-label">Animation Quality</div>
-					<div id="animation-settings-options" class="settings-options">
-						<div><span>Off</span></div>
-						<div><span>10fps</span></div>
-						<div class="selected"><span>30fps</span></div>
-						<div><span>Unlimited</span></div>
-					</div>
-				</div>
-
-				<div id="font-settings" class="settings-section">
-					<div class="settings-label">Font</div>
-					<div id="font-settings-options" class="settings-options">
-						<div class="font-pixel selected"><span>VT323</span></div>
-						<div class="font-standard"><span>Open Sans</span></div>
-						<div class="font-dyslexic"><span>Open Dyslexic</span></div>
-					</div>
-				</div>
-
-				<div id="dialogue-settings" class="settings-section">
-					<div class="settings-label">Text Display Speed</div>
-					<div id="dialogue-settings-options" class="settings-options">
-						<div><span>Off</span></div>
-						<div><span>Slow</span></div>
-						<div class="selected"><span>Med</span></div>
-						<div><span>Fast</span></div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-		<!-- / Settings -->
-
-	</div>
-
-	<script src="main.js"></script>
-</body>
+		<script src="main.js"></script>
+	</body>
 </html>

@@ -1,5 +1,5 @@
 import { Level } from './level.js';
-import { exampleWidget } from './widgets.js';
+import { exampleWidget, binaryWidget, binaryConvertWidget } from './widgets.js';
 
 /**
  * The levelAtlas function generates all of the level data for the game.
@@ -74,6 +74,32 @@ function levelAtlas() {
 				'The first stage\'s dialogue. The answer is "Apple"',
 				'Second dialogue, answer is "Bee"',
 				'Third, "Cat"',
+			]
+		)
+	);
+
+	levels.push(
+		new Level(
+			1,
+			'Binary',
+			'Introduction to binary',
+			new binaryWidget(),
+			['1', '5', '198'],
+			['Write 1 in binary', 'Write 5 in binary', 'Write 198 in binary']
+		)
+	);
+
+	levels.push(
+		new Level(
+			2,
+			'Binary conversion',
+			'Learn to convert to and from binary',
+			new binaryConvertWidget(),
+			['a', 'A', 'Hello world!'],
+			[
+				'What is "a" in binary?',
+				'What is "A" in binary?',
+				'What is "Hello world!" in binary?',
 			]
 		)
 	);
