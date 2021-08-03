@@ -14,9 +14,11 @@ function Actor(_element) {
 
 	let _action = null;
 
-	/* ---------------- */
-	/* PUBLIC FUNCTIONS */
-	/* ---------------- */
+	/* ------------------------ */
+	/*                          */
+	/*     PUBLIC FUNCTIONS     */
+	/*                          */
+	/* ------------------------ */
 
 	/** @function commence
 	 * @summary Starts an actor's acting loop.
@@ -29,9 +31,11 @@ function Actor(_element) {
 		actionLoop();
 	}
 
-	/* ----------------- */
-	/* PRIVATE FUNCTIONS */
-	/* ----------------- */
+	/* ------------------------- */
+	/*                           */
+	/*     PRIVATE FUNCTIONS     */
+	/*                           */
+	/* ------------------------- */
 
 	/** @function updateLoop
 	 * @summary The actor's visual update loop.
@@ -113,9 +117,11 @@ function Actor(_element) {
 		}, 1);
 	}
 
-	/* -------- */
-	/* FINALIZE */
-	/* -------- */
+	/* ---------------- */
+	/*                  */
+	/*     FINALIZE     */
+	/*                  */
+	/* ---------------- */
 
 	return {
 		commence,

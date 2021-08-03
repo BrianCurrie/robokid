@@ -1,79 +1,117 @@
-import { portrait } from './portrait.js';
+import { PortraitManager } from './portrait.js';
 
-const settings = (() => {
-	/* -------------- */
-	/* PUBLIC METHODS */
-	/* -------------- */
+/** @constant SettingsManager
+ * @summary Manages the game's settings.
+ * @author DTT
+ */
+const SettingsManager = (() => {
+	const animId = 'animation-settings-options';
+	const fontId = 'font-settings-options';
+	const dialId = 'dialogue-settings-options';
 
-	/**
-	 * Opens the settings window.
-	 * Sets the settings window's display style to "";
+	/* ------------------------- */
+	/*                           */
+	/*     PRIVATE FUNCTIONS     */
+	/*                           */
+	/* ------------------------- */
+
+	/** @function init
+	 * @summary Initializes the settings manager.
+	 * @access private
+	 */
+	function init() {
+		setOnclicks();
+	}
+
+	/** @function setOnclicks
+	 * @summary Sets all required onclicks.
+	 * @access private
+	 */
+	function setOnclicks() {
+		const $ = (id) => document.getElementById(id);
+
+		$('open-settings-button').onclick = () => {
+			openSettings();
+		};
+
+		$('close-settings-button').onclick = () => {
+			closeSettings();
+		};
+
+		for (let i = 0; i < 4; i++) {
+			$(animId).children[i].onclick = () => {
+				setAnimationUpdateRate(i);
+			};
+		}
+
+		for (let i = 0; i < 3; i++) {
+			$(fontId).children[i].onclick = () => {
+				setFontChoice(i);
+			};
+		}
+
+		for (let i = 0; i < 4; i++) {
+			$(dialId).children[i].onclick = () => {
+				setDialogueSpeed(i);
+			};
+		}
+	}
+
+	/** @function openSettings
+	 * @summary Opens the settings window.
+	 * @access private
 	 */
 	const openSettings = () => {
 		document.getElementById('settings-container').style.display = '';
 	};
 
-	/**
-	 * Closes the settings window.
-	 * Sets the settings window's display style to "none";
+	/** @function closeSettings
+	 * @summary Closes the settings window.
+	 * @access private
 	 */
 	const closeSettings = () => {
 		document.getElementById('settings-container').style.display = 'none';
 	};
 
-	/**
-	 * Sets the animation update rate.
-	 * Limiting the animation update rate could help with potential performance
-	 * issues. In the case of disabling animation, it does not completely stop any
-	 * bone tracking since stopping it outright will make the image positions not
-	 * match the bone's default state, so Number.MAX_SAFE_INTEGER is used as the
-	 * update interval.
-	 * @param {number} setting 0, 1, 2, or 3 corrosponding to "Off", "10fps", "30fps",
-	 * and "Unlimited" respectively.
+	/** @function setAnimationUpdateRate
+	 * @summary Sets the animation update rate.
+	 * @description The animation update rate controls how often some animated
+	 * features have their visual features updated. More frequent updates means
+	 * more stress on the user's computer.
+	 * @access private
+	 * @param {number} setting 0/1/2/3 as Off/10fps/30fps/Unlimited respectively.
 	 */
 	const setAnimationUpdateRate = (setting) => {
 		switch (setting) {
 			case 0:
-				portrait.disableAnimations();
-				portrait.initBoneTracking(Number.MAX_SAFE_INTEGER);
+				PortraitManager.disableAnimations();
+				PortraitManager.initBoneTracking(Number.MAX_SAFE_INTEGER);
 				break;
 			case 1:
-				portrait.enableAnimations();
-				portrait.initBoneTracking(1000 / 10);
+				PortraitManager.enableAnimations();
+				PortraitManager.initBoneTracking(1000 / 10);
 				break;
 			case 2:
-				portrait.enableAnimations();
-				portrait.initBoneTracking(1000 / 30);
+				PortraitManager.enableAnimations();
+				PortraitManager.initBoneTracking(1000 / 30);
 				break;
 			case 3:
-				portrait.enableAnimations();
-				portrait.initBoneTracking(1);
+				PortraitManager.enableAnimations();
+				PortraitManager.initBoneTracking(1);
 				break;
 		}
-		document
-			.getElementById('animation-settings-options')
-			.children[0].classList.remove('selected');
-		document
-			.getElementById('animation-settings-options')
-			.children[1].classList.remove('selected');
-		document
-			.getElementById('animation-settings-options')
-			.children[2].classList.remove('selected');
-		document
-			.getElementById('animation-settings-options')
-			.children[3].classList.remove('selected');
-		document
-			.getElementById('animation-settings-options')
-			.children[setting].classList.add('selected');
+
+		Array.from(document.getElementById(animId).children).forEach((child) => {
+			child.classList.remove('selected');
+		});
+		document.getElementById(animId).children[setting].classList.add('selected');
 	};
 
-	/**
-	 * Sets the font choice.
-	 * VT323 is the pixelated font of choice which fits the game nicely. Open Sans
-	 * is an easy to read and modern looking font. Open Dyslexic is a font
-	 * optimized for users with dyslexia.
-	 * @param {number} setting 0, 1, or 2 corrosponding to "VT323", "Open Sans", and
-	 * "Open Dyslexic" respectively.
+	/** @function setFontChoice
+	 * @summary Sets the font choice.
+	 * @description Sets the font for most text in the game.
+	 * @access private
+	 * @param {number} setting 0/1/2 as Pixel/Standard/Dyslexic respectively.
 	 */
 	const setFontChoice = (setting) => {
 		switch (setting) {
@@ -93,57 +131,36 @@ const settings = (() => {
 				document.body.classList.add('font-dyslexic');
 				break;
 		}
-		document
-			.getElementById('font-settings-options')
-			.children[0].classList.remove('selected');
-		document
-			.getElementById('font-settings-options')
-			.children[1].classList.remove('selected');
-		document
-			.getElementById('font-settings-options')
-			.children[2].classList.remove('selected');
-		document
-			.getElementById('font-settings-options')
-			.children[setting].classList.add('selected');
+
+		Array.from(document.getElementById(fontId).children).forEach((child) => {
+			child.classList.remove('selected');
+		});
+		document.getElementById(fontId).children[setting].classList.add('selected');
 	};
 
-	/**
-	 * Sets the dialogue speed.
-	 * Dialogue text is not set up yet, so no particular values have been decided
-	 * on.
-	 * @param {number} setting 0, 1, 2, or 3 corrosponding to "Off", "Slow", "Mid",
-	 * and "Fast" respectively.
+	/** @function setDialogueSpeed
+	 * @summary Sets the dialogue speed.
+	 * @description Sets the speed at which dialogue is "typed" out in the
+	 * dialogue box.
+	 * @access private
+	 * @param {any} setting 0/1/2/3 as Off/Slow/Mid/Fast respectively.
 	 */
 	const setDialogueSpeed = (setting) => {
 		console.log('Dialogue speed set to ' + setting);
-		document
-			.getElementById('dialogue-settings-options')
-			.children[0].classList.remove('selected');
-		document
-			.getElementById('dialogue-settings-options')
-			.children[1].classList.remove('selected');
-		document
-			.getElementById('dialogue-settings-options')
-			.children[2].classList.remove('selected');
-		document
-			.getElementById('dialogue-settings-options')
-			.children[3].classList.remove('selected');
-		document
-			.getElementById('dialogue-settings-options')
-			.children[setting].classList.add('selected');
+
+		Array.from(document.getElementById(dialId).children).forEach((child) => {
+			child.classList.remove('selected');
+		});
+		document.getElementById(dialId).children[setting].classList.add('selected');
 	};
 
-	/* -------- */
-	/* FINALIZE */
-	/* -------- */
+	/* ---------------- */
+	/*                  */
+	/*     FINALIZE     */
+	/*                  */
+	/* ---------------- */
 
-	return {
-		openSettings,
-		closeSettings,
-		setAnimationUpdateRate,
-		setFontChoice,
-		setDialogueSpeed,
-	};
+	init();
 })();
 
-export { settings };
+export { SettingsManager };

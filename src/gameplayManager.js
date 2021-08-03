@@ -1,13 +1,10 @@
-import { portrait } from './portrait.js';
-import { settings } from './settings.js';
-import { Actor, Scene } from './scene.js';
-import { Level } from './level.js';
 import { levelAtlas } from './levelAtlas.js';
 
-/**
- * Manages the broad aspects of the gameplay section of the game.
+/** @constant GameplayManager
+ * @summary Manages most communication between gameplay and other systems.
+ * @author DTT
  */
-const gameplayManager = (() => {
+const GameplayManager = (() => {
 	const $ = (id) => document.getElementById(id);
 	const _gameplayContainer = $('gameplay-container');
 	const _levelSelectContainer = $('level-select-container');
@@ -24,17 +21,20 @@ const gameplayManager = (() => {
 	/*                          */
 	/* ------------------------ */
 
-	/**
-	 * Exits level select and begins a level.
-	 * @param {number} id The id of the level to play.
+	/** @function beginLevel
+	 * @summary Exits level select and beginds a level.
+	 * @access public
+	 * @param {number} id The id of the level to begin.
 	 */
 	function beginLevel(id) {
 		_levels[id].begin(_levels[id]);
 		exitLevelSelect();
 	}
 
-	/**
-	 * Generates new level select html and goes to level select.
+	/** @function finishLevel
+	 * @summary Returns to level select.
+	 * @description Generates new level select html and goes to level select.
+	 * @access public
 	 */
 	function finishLevel() {
 		generateLevelSelectHtml();
@@ -45,6 +45,7 @@ const gameplayManager = (() => {
 	 * @summary Sets the content of the dialogue box.
 	 * @description Sets the content of the dialogue box. Options include {
 	 * duration }
+	 * @access public
 	 * @param {string} msg The text to set.
 	 * @param {object} opts Extra options.
 	 */
@@ -74,8 +75,10 @@ const gameplayManager = (() => {
 	/*                           */
 	/* ------------------------- */
 
-	/**
-	 * Initializes the gameplay manager.
+	/** @function init
+	 * @summary Initializes the gameplay manager.
+	 * @description Grabs the level atlas and readies level select.
+	 * @access private
 	 */
 	function init() {
 		_levels = levelAtlas();
@@ -89,9 +92,9 @@ const gameplayManager = (() => {
 		_levelSelectContainer.classList.remove('level-select-open-animation');
 	}
 
-	/**
-	 * Generates new level selection HTML. Useful when exiting levels to update
-	 * completion status or unlocks.
+	/** @function generateLevelSelectHtml
+	 * @summary Generates new level select HTML.
+	 * @access private
 	 */
 	function generateLevelSelectHtml() {
 		_levelSelectItemsContainer.innerHTML = '';
@@ -100,16 +103,18 @@ const gameplayManager = (() => {
 		});
 	}
 
-	/**
-	 * Opens the level select dock.
+	/** @function enterLevelSelect
+	 * @summary Opens the level select dock.
+	 * @access private
 	 */
 	function enterLevelSelect() {
 		_levelSelectContainer.classList.remove('level-select-close-animation');
 		_levelSelectContainer.classList.add('level-select-open-animation');
 	}
 
-	/**
-	 * Closes the level select dock.
+	/** @function exitLevelSelect
+	 * @summary Closes the level select dock.
+	 * @access private
 	 */
 	function exitLevelSelect() {
 		_levelSelectContainer.classList.remove('level-select-open-animation');
@@ -131,4 +136,4 @@ const gameplayManager = (() => {
 	};
 })();
 
-export { gameplayManager };
+export { GameplayManager };

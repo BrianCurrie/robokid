@@ -1,19 +1,24 @@
-const portrait = (() => {
+/** @constant PortraitManager
+ * @summary Manages the systems within the portrait view.
+ * @author DTT
+ */
+const PortraitManager = (() => {
 	const anchor = document.getElementById('portrait-container');
 	let bones = [];
 	let images = [];
 	let trackers = [];
 
-	/* ----------------- */
-	/* PUBLIC FUNCTIONS */
-	/* ----------------- */
+	/* ------------------------ */
+	/*                          */
+	/*     PUBLIC FUNCTIONS     */
+	/*                          */
+	/* ------------------------ */
 
-	/**
-	 * Initializes bone tracking.
-	 * Bone tracking is set for each bone and image using the private trackBone
-	 * function.
-	 * @param {number} interval How frequently image position should update
-	 * (1000/30 = 30 fps, etc).
+	/** @function initBoneTracking
+	 * @summary Initializes bone tracking.
+	 * @access public
+	 * @param {number} interval The interval in milliseconds at which the visuals
+	 * are updated to match the internal bone transforms.
 	 */
 	const initBoneTracking = (interval) => {
 		for (let i = 0; i < 9; i++) {
@@ -25,9 +30,9 @@ const portrait = (() => {
 		console.log(`Bone tracking initialized with interval of ${interval}`);
 	};
 
-	/**
-	 * Enables bone animation.
-	 * Adds the "animated" css class to each bone div.
+	/** @function enableAnimations
+	 * @summary Enables bone animations.
+	 * @access public
 	 */
 	const enableAnimations = function () {
 		bones.forEach((bone) => {
@@ -35,9 +40,9 @@ const portrait = (() => {
 		});
 	};
 
-	/**
-	 * Disables bone animation.
-	 * Removes the "animated" css class to each bone div.
+	/** @function disableAnimations
+	 * @summary Disables bone animations.
+	 * @access public
 	 */
 	const disableAnimations = function () {
 		bones.forEach((bone) => {
@@ -45,16 +50,26 @@ const portrait = (() => {
 		});
 	};
 
-	/* ----------------- */
-	/* PRIVATE FUNCTIONS */
-	/* ----------------- */
+	/* ------------------------- */
+	/*                           */
+	/*     PRIVATE FUNCTIONS     */
+	/*                           */
+	/* ------------------------- */
 
-	/**
-	 * Initializes the portrait object.
-	 * Grabs all the bone divs and images, then initiates bone tracking.
+	/** @function init
+	 * @summary Initializes the portrait manager.
 	 * @access private
 	 */
 	const init = function () {
+		getBoneAndImageElements();
+		initBoneTracking(1000 / 60);
+	};
+
+	/** @function getBoneAndImageElements
+	 * @summary Gets all the needed elements.
+	 * @access private
+	 */
+	function getBoneAndImageElements() {
 		bones[0] = document.getElementById('bone-wheels');
 		bones[1] = document.getElementById('bone-body-tube');
 		bones[2] = document.getElementById('bone-chest');
@@ -74,15 +89,14 @@ const portrait = (() => {
 		images[6] = document.getElementById('img-left-hand');
 		images[7] = document.getElementById('img-head');
 		images[8] = document.getElementById('img-face');
+	}
 
-		initBoneTracking(1000 / 60);
-	};
-
-	/**
-	 * Tracks an image to it's bone.
-	 * Adjusts the image to match it's bone's relevant transform styles.
-	 * @param {number} id The ID of the bone / image to adjust.
+	/** @function trackBone
+	 * @summary Tracks and image to it's bone.
+	 * @description Sets the image's transforms to match it's matched bone's
+	 * transforms.
 	 * @access private
+	 * @param {number} id The id of the bone / image to adjust.
 	 */
 	const trackBone = (id) => {
 		images[id].style.transform = getComputedStyle(bones[id]).getPropertyValue(
@@ -99,9 +113,11 @@ const portrait = (() => {
 			anchor.getBoundingClientRect().top;
 	};
 
-	/* -------- */
-	/* FINALIZE */
-	/* -------- */
+	/* ---------------- */
+	/*                  */
+	/*     FINALIZE     */
+	/*                  */
+	/* ---------------- */
 
 	init();
 
@@ -112,4 +128,4 @@ const portrait = (() => {
 	};
 })();
 
-export { portrait };
+export { PortraitManager };

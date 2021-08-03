@@ -1,6 +1,3 @@
-import { gameplayManager } from './gameplayManager.js';
-import { exampleWidget } from './widgets.js';
-
 /** @class Level
  * @summary Represents a level.
  * @classdesc	Holds all the information representing a level in the game with
