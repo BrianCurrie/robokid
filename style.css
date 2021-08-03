@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0px;
 	overflow: hidden;
@@ -5,13 +9,14 @@ body {
 	color: #51ab2f;
 }
 
-#bg-tex, #bg-grd {
+#bg-tex,
+#bg-grd {
 	position: absolute;
 	width: calc(100% + 24px);
 	height: calc(100% + 12px);
 	left: -24px;
 	top: -12px;
-  z-index: -1;
+	z-index: -1;
 }
 
 #bg-tex {
@@ -27,7 +32,11 @@ body {
 }
 
 #bg-grd {
-	background-image: linear-gradient(to top, rgba(0, 128, 255, 0.5), rgba(0, 0, 0, 0));
+	background-image: linear-gradient(
+		to top,
+		rgba(0, 128, 255, 0.5),
+		rgba(0, 0, 0, 0)
+	);
 }
 
 @keyframes anim-bg-scroll {
@@ -48,16 +57,6 @@ body {
 	align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
 #open-settings-button {
 	position: absolute;
 	cursor: pointer;
@@ -68,7 +67,7 @@ body {
 	position: absolute;
 	width: 512px;
 	height: 512px;
-	background-image: url("assets/settings.png");
+	background-image: url('assets/settings.png');
 	color: #51ab2f;
 	z-index: 2;
 }
@@ -108,7 +107,7 @@ body {
 }
 
 .settings-options div {
-  padding: 8px;
+	padding: 8px;
 	margin: 0 2px;
 	background-color: #0f2615;
 	border-radius: 8px;
@@ -120,67 +119,46 @@ body {
 	background-color: #186323;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .font-pixel {
-	font-family: "VT323";
+	font-family: 'VT323';
 	font-size: 16pt;
 	line-height: 16pt;
 }
 
 .font-pixel > span {
-  position: relative;
+	position: relative;
 	top: 0px;
 }
 
 .font-standard {
-	font-family: "Open Sans";
+	font-family: 'Open Sans';
 	font-weight: bold;
 	font-size: 12pt;
 	line-height: 16pt;
 }
 
 .font-standard span {
-  position: relative;
+	position: relative;
 	top: -1px;
 }
 
 .font-dyslexic {
-	font-family: "Open Dyslexic";
+	font-family: 'Open Dyslexic';
 	font-weight: bold;
 	font-size: 11pt;
 	line-height: 16pt;
 }
 
 .font-dyslexic span {
-  position: relative;
+	position: relative;
 	top: -3px;
 }
-
-
-
-
-
-
-
-
-
-
 
 #game-container {
 	position: relative;
 	width: 1024px;
 	height: 768px;
-	//background-image: url("./assets/cover.png");
+	/*background-image: url("./assets/cover.png");*/
 }
 
 #portrait-container {
@@ -202,14 +180,6 @@ body {
 	background-color: lightpink;
 }
 
-
-
-
-
-
-
-
-
 #dialogue-container {
 	position: absolute;
 	left: 16px;
@@ -225,11 +195,11 @@ body {
 }
 
 #dialogue:before {
-	content: "> ";
+	content: '> ';
 }
 
 #dialogue:after {
-	content: "|";
+	content: '|';
 	animation-name: anim-blink;
 	animation-timing-function: linear;
 	animation-direction: alternate;
@@ -249,21 +219,13 @@ body {
 	}
 }
 
-
-
-
-
-
-
-
-
 #interactive-container {
 	position: absolute;
 	right: 16px;
 	bottom: 16px;
 	width: 688px;
 	height: 496px;
-	//z-index: -1;
+	/*z-index: -1;*/
 	overflow: hidden;
 }
 
@@ -272,16 +234,12 @@ body {
 	width: 688px;
 	height: 496px;
 	background: lightpink;
-	//z-index: -1;
+	/*z-index: -1;*/
 }
-
-
-
-
 
 #cover {
 	position: absolute;
-	//display: none;
+	/*display: none;*/
 	pointer-events: none;
 	z-index: 0;
 }
@@ -314,7 +272,7 @@ body {
 .level-select-item {
 	width: 200px;
 	height: 136px;
-	background-image: url("./assets/panel.png");
+	background-image: url('./assets/panel.png');
 	cursor: pointer;
 }
 
@@ -324,7 +282,6 @@ body {
 }
 
 .level-select-item-topic {
-	
 }
 
 #level-select-open-button {
@@ -335,8 +292,6 @@ body {
 	background-color: gray;
 	cursor: pointer;
 }
-
-
 
 .level-select-open-animation {
 	animation: level-select-open 1s ease-in-out forwards;
