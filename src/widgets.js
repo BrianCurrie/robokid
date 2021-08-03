@@ -80,7 +80,7 @@ const binaryWidget = function () {
 
 		const valueDisplay = document.createElement('div');
 		valueDisplay.id = 'binary-widget-value-display';
-		valueDisplay.innerText = '0';
+		valueDisplay.innerText = parseInt(binaryArr.join(''), 2);
 
 		const toggleDigits = document.createElement('div');
 		toggleDigits.id = 'binary-widget-toggle-digits';
@@ -106,7 +106,7 @@ const binaryWidget = function () {
 			digit.classList.add('digit');
 
 			plus.innerText = '+';
-			digit.innerText = '0';
+			digit.innerText = binaryArr[i];
 			minus.innerText = '-';
 
 			digitContainer.appendChild(plus);
