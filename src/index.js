@@ -4,7 +4,7 @@ import { levelAtlas } from './levelAtlas.js';
 import { portrait } from './portrait.js';
 import { scene, actor } from './scene.js';
 import { settings } from './settings.js';
-import { exampleWidget } from './widgets.js';
+import { exampleWidget, binaryWidget, binaryConvertWidget } from './widgets.js';
 
 {
 	document.getElementById('open-settings-button').onclick = () => {
