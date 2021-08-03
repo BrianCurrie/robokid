@@ -1,3 +1,5 @@
+import { GameplayManager } from './gameplayManager.js';
+
 /** @class Level
  * @summary Represents a level.
  * @classdesc	Holds all the information representing a level in the game with
@@ -69,7 +71,7 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 			root.classList.add('level-select-item-completed');
 		} else if (!_locked) {
 			root.onclick = () => {
-				gameplayManager.beginLevel(_id);
+				GameplayManager.beginLevel(_id);
 			};
 		} else {
 			root.classList.add('level-select-item-locked');
@@ -93,11 +95,11 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 			if (_currentStage > _answers.length - 1) {
 				finish();
 			} else {
-				gameplayManager.setDialogue(_dialogue[_currentStage]);
+				GameplayManager.setDialogue(_dialogue[_currentStage]);
 			}
-			gameplayManager.setDialogue('Correct answer!', { duration: 2000 });
+			GameplayManager.setDialogue('Correct answer!', { duration: 2000 });
 		} else {
-			gameplayManager.setDialogue('Wrong answer!', { duration: 2000 });
+			GameplayManager.setDialogue('Wrong answer!', { duration: 2000 });
 		}
 	}
 
@@ -109,11 +111,14 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	 */
 	function begin() {
 		document.getElementById('gameplay-container').innerHTML = '';
+		const questionButton = document.createElement('div');
+		questionButton.id = 'question-button';
+		document.getElementById('gameplay-container').appendChild(questionButton);
 		_widget.setLevel(this);
 		document
 			.getElementById('gameplay-container')
 			.appendChild(_widget.generateHtml());
-		gameplayManager.setDialogue(_dialogue[_currentStage]);
+		GameplayManager.setDialogue(_dialogue[_currentStage]);
 	}
 
 	/* ------------------------- */
@@ -130,8 +135,8 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue) {
 	function finish() {
 		console.log('Level finished.');
 		_completed = true;
-		gameplayManager.setDialogue(`Level ${_id} complete, good job!`);
-		gameplayManager.finishLevel();
+		GameplayManager.setDialogue(`Level ${_id} complete, good job!`);
+		GameplayManager.finishLevel();
 	}
 
 	/* ---------------- */

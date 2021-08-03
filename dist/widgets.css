@@ -8,6 +8,7 @@
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	font-size: 1.5em;
 }
 
 #binary-widget-toggle-digits {
@@ -21,7 +22,56 @@
 
 .digit {
 	text-align: center;
-	padding: 10px;
+	padding-top: 20px;
+	width: 32px;
+	height: 64px;
+	background-image: url('./assets/widgets/binary-column.png');
+}
+
+.digit-container button {
+	width: 32px;
+	height: 32px;
+	border: none;
+	background-color: hsla(0, 0%, 0%, 0);
+	cursor: pointer;
+}
+
+.digit-container button:nth-child(1) {
+	background-image: url('./assets/widgets/plus-button.png');
+}
+
+.digit-container button:nth-child(1):active {
+	background-image: url('./assets/widgets/plus-button-pressed.png');
+}
+
+.digit-container button:nth-child(3) {
+	background-image: url('./assets/widgets/minus-button.png');
+}
+.digit-container button:nth-child(3):active {
+	background-image: url('./assets/widgets/minus-button-pressed.png');
+}
+
+#binary-widget-submit-button {
+	margin-top: 16px;
+	width: 128px;
+	height: 64px;
+	background-image: url('./assets/widgets/large-button.png');
+	text-align: center;
+	padding-top: 20px;
+	cursor: pointer;
+}
+
+#binary-widget-submit-button:active {
+	background-image: url('./assets/widgets/large-button-pressed.png');
+}
+
+#binary-widget-value-display {
+	width: 64px;
+	height: 64px;
+	background-image: url('./assets/widgets/binary-output.png');
+	text-align: center;
+	padding-top: 20px;
+	margin-bottom: 16px;
 }
 
 /*******

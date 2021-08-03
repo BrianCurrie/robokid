@@ -233,7 +233,7 @@ body {
 	position: absolute;
 	width: 688px;
 	height: 496px;
-	background: lightpink;
+	background: #3b4539;
 	/*z-index: -1;*/
 }
 
@@ -289,8 +289,24 @@ body {
 	left: -64px;
 	width: 64px;
 	height: 64px;
-	background-color: gray;
 	cursor: pointer;
+	background-image: url('./assets/back-button.png');
+}
+
+#level-select-open-button:active {
+	background-image: url('./assets/back-button-pressed.png');
+}
+
+#question-button {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	background-image: url('./assets/question-button.png');
+}
+
+#question-button:active {
+	background-image: url('./assets/question-button-pressed.png');
 }
 
 .level-select-open-animation {
