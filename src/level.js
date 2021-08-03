@@ -6,7 +6,6 @@ import { exampleWidget } from './widgets.js';
  * @classdesc	Holds all the information representing a level in the game with
  * functions to track progress through the level.
  * @author DTT
- * @access public
  * @param {Number} _id The level's unique id.
  * @param {string} _title The level's title.
  * @param {string} _topic The level's educational topic

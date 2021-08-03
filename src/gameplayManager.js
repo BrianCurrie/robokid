@@ -1,6 +1,6 @@
 import { portrait } from './portrait.js';
 import { settings } from './settings.js';
-import { scene, actor } from './scene.js';
+import { Actor, Scene } from './scene.js';
 import { Level } from './level.js';
 import { levelAtlas } from './levelAtlas.js';
 

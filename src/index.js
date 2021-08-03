@@ -2,7 +2,7 @@ import { gameplayManager } from './gameplayManager.js';
 import { Level } from './level.js';
 import { levelAtlas } from './levelAtlas.js';
 import { portrait } from './portrait.js';
-import { scene, actor } from './scene.js';
+import { Actor, Scene } from './scene.js';
 import { settings } from './settings.js';
 import { exampleWidget, binaryWidget, binaryConvertWidget } from './widgets.js';
 
