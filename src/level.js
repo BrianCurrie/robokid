@@ -106,7 +106,7 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 	/** @function begin
 	 * @summary Begins the level.
 	 * @description Begins the level, setting up communication with the widget and
-	 * drawing it, as well as setting the dialogue
+	 * drawing it, filling the level info section, and setting the dialogue.
 	 * @access public
 	 */
 	function begin() {

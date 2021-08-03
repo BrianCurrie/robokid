@@ -132,6 +132,10 @@ const GameplayManager = (() => {
 		_levelInfoContainer.classList.add('level-info-reveal-animation');
 	}
 
+	/** @function enterLevelInfo
+	 * @summary Opens the level info dock.
+	 * @access private
+	 */
 	function enterLevelInfo() {
 		_levelInfoContainer.className = '';
 		_levelInfoContainer.classList.add('level-info-open-animation');
@@ -139,6 +143,10 @@ const GameplayManager = (() => {
 		_levelSelectContainer.classList.add('level-select-hide-animation');
 	}
 
+	/** @function exitLevelInfo
+	 * @summary Closes the level info dock.
+	 * @access private
+	 */
 	function exitLevelInfo() {
 		_levelInfoContainer.className = '';
 		_levelInfoContainer.classList.add('level-info-close-animation');
