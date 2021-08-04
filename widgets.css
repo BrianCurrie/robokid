@@ -87,10 +87,34 @@
 	margin: 0 30px;
 }
 
+#convert-widget-input {
+	padding: 8px;
+	background-color: #2f362d;
+	color: #51ab2f;
+	border: 2px solid #000000;
+}
+
+#convert-widget-input::placeholder {
+	opacity: 1;
+}
+
+#convert-widget-input:focus {
+	border: 2px solid #50ab2fa4;
+	outline: none;
+}
+
 #convert-widget-output {
+	display: flex;
+	flex-direction: column-reverse;
 	text-align: center;
-	min-height: 1rem;
+	user-select: text;
+	background-color: #2f362d;
+	border: 2px solid #000000;
+	padding: 1rem 0px;
 	margin: 1rem;
+	width: 80%;
+	height: 4rem;
+	overflow-y: scroll;
 }
 
 /*******
@@ -109,4 +133,79 @@
 	height: 100px;
 	width: 200px;
 	margin: 16px 0px;
+	border: 2px solid #000000;
+}
+
+/*******
+    Cmd widget
+********/
+
+#cmd-widget-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#cmd-widget-display {
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	width: 80%;
+	background-color: #300a24;
+	border: 2px solid #000000;
+	color: #ffffff;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+#cmd-widget-output {
+	display: flex;
+	flex-direction: column-reverse;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	overflow-wrap: break-word;
+}
+
+#cmd-widget-dir-input {
+	width: 0px;
+	background-color: transparent;
+	color: inherit;
+	font-family: inherit;
+	border: none;
+	caret-color: transparent;
+	font-size: inherit;
+}
+
+#cmd-widget-dir {
+	display: flex;
+	align-items: center;
+}
+
+#cmd-widget-dir-caret {
+	height: 1rem;
+	width: 0.5rem;
+	background-color: #ffffff;
+	visibility: hidden;
+}
+
+.indent {
+	margin-left: 15px;
+}
+
+.green {
+	color: #4d9a06;
+}
+
+.blue {
+	color: #346492;
+}
+
+.folder {
+	color: #3465a4;
+}
+
+.errMsg {
+	color: #ffffff;
 }
