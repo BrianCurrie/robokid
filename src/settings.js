@@ -1,3 +1,4 @@
+import { DialogueManager } from './DialogueManager.js';
 import { PortraitManager } from './portrait.js';
 
 /** @constant SettingsManager
@@ -8,6 +9,7 @@ const SettingsManager = (() => {
 	const animId = 'animation-settings-options';
 	const fontId = 'font-settings-options';
 	const dialId = 'dialogue-settings-options';
+	const spchId = 'speech-settings-options';
 
 	/* ------------------------- */
 	/*                           */
@@ -55,23 +57,29 @@ const SettingsManager = (() => {
 				setDialogueSpeed(i);
 			};
 		}
+
+		for (let i = 0; i < 4; i++) {
+			$(spchId).children[i].onclick = () => {
+				setSpeechRate(i);
+			};
+		}
 	}
 
 	/** @function openSettings
 	 * @summary Opens the settings window.
 	 * @access private
 	 */
-	const openSettings = () => {
+	function openSettings() {
 		document.getElementById('settings-container').style.display = '';
-	};
+	}
 
 	/** @function closeSettings
 	 * @summary Closes the settings window.
 	 * @access private
 	 */
-	const closeSettings = () => {
+	function closeSettings() {
 		document.getElementById('settings-container').style.display = 'none';
-	};
+	}
 
 	/** @function setAnimationUpdateRate
 	 * @summary Sets the animation update rate.
@@ -81,7 +89,7 @@ const SettingsManager = (() => {
 	 * @access private
 	 * @param {number} setting 0/1/2/3 as Off/10fps/30fps/Unlimited respectively.
 	 */
-	const setAnimationUpdateRate = (setting) => {
+	function setAnimationUpdateRate(setting) {
 		switch (setting) {
 			case 0:
 				PortraitManager.disableAnimations();
@@ -105,7 +113,7 @@ const SettingsManager = (() => {
 			child.classList.remove('selected');
 		});
 		document.getElementById(animId).children[setting].classList.add('selected');
-	};
+	}
 
 	/** @function setFontChoice
 	 * @summary Sets the font choice.
@@ -113,7 +121,7 @@ const SettingsManager = (() => {
 	 * @access private
 	 * @param {number} setting 0/1/2 as Pixel/Standard/Dyslexic respectively.
 	 */
-	const setFontChoice = (setting) => {
+	function setFontChoice(setting) {
 		switch (setting) {
 			case 0: // Pixel
 				document.body.classList.remove('font-standard');
@@ -136,23 +144,69 @@ const SettingsManager = (() => {
 			child.classList.remove('selected');
 		});
 		document.getElementById(fontId).children[setting].classList.add('selected');
-	};
+	}
 
 	/** @function setDialogueSpeed
 	 * @summary Sets the dialogue speed.
 	 * @description Sets the speed at which dialogue is "typed" out in the
 	 * dialogue box.
 	 * @access private
-	 * @param {any} setting 0/1/2/3 as Off/Slow/Mid/Fast respectively.
+	 * @param {number} setting 0/1/2/3 as Off/Slow/Mid/Fast respectively.
 	 */
-	const setDialogueSpeed = (setting) => {
-		console.log('Dialogue speed set to ' + setting);
+	function setDialogueSpeed(setting) {
+		switch (setting) {
+			case 0: // Off
+				DialogueManager.disableTextCrawl();
+				break;
+			case 1: // Slow
+				DialogueManager.enableTextCrawl();
+				DialogueManager.setTextCrawlSpeed(80);
+				break;
+			case 2: // Mid
+				DialogueManager.enableTextCrawl();
+				DialogueManager.setTextCrawlSpeed(40);
+				break;
+			case 3: // Fast
+				DialogueManager.enableTextCrawl();
+				DialogueManager.setTextCrawlSpeed(30);
+				break;
+		}
 
 		Array.from(document.getElementById(dialId).children).forEach((child) => {
 			child.classList.remove('selected');
 		});
 		document.getElementById(dialId).children[setting].classList.add('selected');
-	};
+	}
+
+	/** @function setSpeechRate
+	 * @summary Set the voice speech rate.
+	 * @access private
+	 * @param {number} setting 0/1/2/3 as Off/Slow/Mid/Fast respectively.
+	 */
+	function setSpeechRate(setting) {
+		switch (setting) {
+			case 0: // Off
+				DialogueManager.disableSpeech();
+				break;
+			case 1: // Slow
+				DialogueManager.enableSpeech();
+				DialogueManager.setSpeechRate(0.5);
+				break;
+			case 2: // Mid
+				DialogueManager.enableSpeech();
+				DialogueManager.setSpeechRate(1);
+				break;
+			case 3: // Fast
+				DialogueManager.enableSpeech();
+				DialogueManager.setSpeechRate(1.5);
+				break;
+		}
+
+		Array.from(document.getElementById(spchId).children).forEach((child) => {
+			child.classList.remove('selected');
+		});
+		document.getElementById(spchId).children[setting].classList.add('selected');
+	}
 
 	/* ---------------- */
 	/*                  */

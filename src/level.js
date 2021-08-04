@@ -1,3 +1,4 @@
+import { DialogueManager } from './DialogueManager.js';
 import { GameplayManager } from './gameplayManager.js';
 
 /** @class Level
@@ -95,11 +96,12 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 			if (_currentStage > _answers.length - 1) {
 				finish();
 			} else {
-				GameplayManager.setDialogue(_dialogue[_currentStage]);
+				DialogueManager.flushMessageQueue();
+				DialogueManager.flashMessage('Correct answer!', 2000);
+				DialogueManager.enqueue(_dialogue[_currentStage]);
 			}
-			GameplayManager.setDialogue('Correct answer!', { duration: 2000 });
 		} else {
-			GameplayManager.setDialogue('Wrong answer!', { duration: 2000 });
+			DialogueManager.flashMessage('Wrong answer!', 2000);
 		}
 	}
 
@@ -122,7 +124,8 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 				document.getElementById('level-info-content').innerText = _info;
 			}
 		}
-		GameplayManager.setDialogue(_dialogue[_currentStage]);
+		DialogueManager.flushMessageQueue();
+		DialogueManager.enqueue(_dialogue[_currentStage]);
 	}
 
 	/* ------------------------- */
@@ -139,7 +142,8 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 	function finish() {
 		console.log('Level finished.');
 		_completed = true;
-		GameplayManager.setDialogue(`Level ${_id} complete, good job!`);
+		DialogueManager.flushMessageQueue();
+		DialogueManager.flashMessage(`Level ${_id} complete, good job!`);
 		GameplayManager.finishLevel();
 	}
 

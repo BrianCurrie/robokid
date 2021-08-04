@@ -50,6 +50,30 @@ function levelAtlas() {
 		)
 	);
 
+	// Dev testing widget.
+	levels.push(
+		new Level(
+			levels.length,
+			'Testing',
+			'Testing',
+			new binaryWidget(),
+			['1', '3', '7'],
+			[
+				[
+					'This is the first message in the queue.',
+					'This is the second.',
+					'The third. Anser is 1.',
+				],
+				[
+					'Now onto the second level, which has two messages queued instead of one.',
+					'The answer for this one is 3.',
+				],
+				'The final stage in this test level has one message, no array.',
+			],
+			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
+		)
+	);
+
 	return levels;
 }
 
