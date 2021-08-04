@@ -1,4 +1,5 @@
 import { GameplayManager } from './gameplayManager.js';
+import { DialogueManager } from './DialogueManager.js';
 import { Level } from './level.js';
 import { levelAtlas } from './levelAtlas.js';
 import { PortraitManager } from './portrait.js';

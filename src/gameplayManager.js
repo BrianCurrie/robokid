@@ -1,4 +1,5 @@
 import { levelAtlas } from './levelAtlas.js';
+import { DialogueManager } from './DialogueManager.js';
 
 /** @constant GameplayManager
  * @summary Manages most communication between gameplay and other systems.
@@ -10,7 +11,6 @@ const GameplayManager = (() => {
 	const _levelSelectContainer = $('level-select-container');
 	const _levelSelectItemsContainer = $('level-select-items');
 	const _levelInfoContainer = $('level-info-container');
-	const _dialogueContainer = $('dialogue');
 
 	let _levels = [];
 
@@ -51,23 +51,7 @@ const GameplayManager = (() => {
 	 * @param {object} opts Extra options.
 	 */
 	function setDialogue(msg, opts) {
-		if (!msg) {
-			msg = '< Dialogue message was not set >';
-		}
-		if (!opts) {
-			opts = {};
-		}
-
-		if (opts.duration) {
-			setTimeout(() => {
-				setDialogue(_dialogueMainText);
-			}, opts.duration);
-		} else {
-			_dialogueMainText = msg;
-		}
-
-		_dialogueContainer.innerText = msg;
-		console.log(`Set dialogue to "${msg}"`);
+		DialogueManager.setDialogue(msg, opts);
 	}
 
 	/* ------------------------- */
@@ -119,6 +103,8 @@ const GameplayManager = (() => {
 		_levelSelectContainer.classList.add('level-select-open-animation');
 		_levelInfoContainer.className = '';
 		_levelInfoContainer.classList.add('level-info-hide-animation');
+		DialogueManager.flushMessageQueue();
+		DialogueManager.enqueue('Select a level to play.');
 	}
 
 	/** @function exitLevelSelect
