@@ -38,7 +38,7 @@ const exampleWidget = function () {
 		inputField.id = 'example-widget-input-field';
 
 		const submitButton = document.createElement('div');
-		submitButton.id = 'example-widget-submit-button';
+		submitButton.classList.add('submit-button');
 		submitButton.innerText = 'Submit';
 		submitButton.onclick = () => {
 			submit();
@@ -80,13 +80,13 @@ const binaryWidget = function () {
 
 		const valueDisplay = document.createElement('div');
 		valueDisplay.id = 'binary-widget-value-display';
-		valueDisplay.innerText = '0';
+		valueDisplay.innerText = parseInt(binaryArr.join(''), 2);
 
 		const toggleDigits = document.createElement('div');
 		toggleDigits.id = 'binary-widget-toggle-digits';
 
 		const submitButton = document.createElement('div');
-		submitButton.id = 'binary-widget-submit-button';
+		submitButton.classList.add('submit-button');
 		submitButton.innerText = 'Submit';
 		submitButton.onclick = () => {
 			submit();
@@ -106,7 +106,7 @@ const binaryWidget = function () {
 			digit.classList.add('digit');
 
 			plus.innerText = '+';
-			digit.innerText = '0';
+			digit.innerText = binaryArr[i];
 			minus.innerText = '-';
 
 			digitContainer.appendChild(plus);
@@ -177,7 +177,7 @@ const binaryConvertWidget = function () {
 		output.id = 'convert-widget-output';
 
 		const submitButton = document.createElement('div');
-		submitButton.id = 'binary-widget-submit-button';
+		submitButton.classList.add('submit-button');
 		submitButton.innerText = 'Submit';
 		submitButton.onclick = () => {
 			submit();
@@ -205,7 +205,6 @@ const binaryConvertWidget = function () {
 
 	function submit() {
 		const submission = document.getElementById('convert-widget-input').value;
-		console.log(submission);
 		_level.submit(submission);
 	}
 
@@ -215,4 +214,113 @@ const binaryConvertWidget = function () {
 	};
 };
 
-export { exampleWidget, binaryWidget, binaryConvertWidget };
+const RGBWidget = function () {
+	let _level = null;
+
+	function setLevel(level) {
+		_level = level;
+	}
+
+	let rgbValues = [0, 0, 0];
+
+	function generateHtml() {
+		const container = document.createElement('div');
+		container.id = 'RGB-widget-container';
+
+		const colorDisplay = document.createElement('div');
+		colorDisplay.id = 'RGB-widget-color-display';
+		colorDisplay.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+
+		const sliderContainer = document.createElement('div');
+		sliderContainer.id = 'RGB-widget-slider-container';
+
+		const red = document.createElement('div');
+		const redText = document.createElement('div');
+		redText.innerText = `Red ${rgbValues[0]}`;
+		const redInput = document.createElement('input');
+		redInput.id = 'RGB-widget-red-input';
+		redInput.classList.add('slider');
+		redInput.type = 'range';
+		redInput.min = '0';
+		redInput.max = '255';
+		redInput.value = rgbValues[0];
+
+		const green = document.createElement('div');
+		const greenText = document.createElement('div');
+		greenText.innerText = `Green ${rgbValues[1]}`;
+		const greenInput = document.createElement('input');
+		greenInput.id = 'RGB-widget-green-input';
+		greenInput.classList.add('slider');
+		greenInput.type = 'range';
+		greenInput.min = '0';
+		greenInput.max = '255';
+		greenInput.value = rgbValues[1];
+
+		const blue = document.createElement('div');
+		const blueText = document.createElement('div');
+		blueText.innerText = `Blue ${rgbValues[2]}`;
+		const blueInput = document.createElement('input');
+		blueInput.id = 'GB-widget-blue-input';
+		blueInput.classList.add('slider');
+		blueInput.type = 'range';
+		blueInput.min = '0';
+		blueInput.max = '255';
+		blueInput.value = rgbValues[2];
+
+		const submitButton = document.createElement('div');
+		submitButton.classList.add('submit-button');
+		submitButton.innerText = 'Submit';
+		submitButton.onclick = () => {
+			submit();
+		};
+
+		red.appendChild(redText);
+		red.appendChild(redInput);
+
+		green.appendChild(greenText);
+		green.appendChild(greenInput);
+
+		blue.appendChild(blueText);
+		blue.appendChild(blueInput);
+
+		sliderContainer.appendChild(red);
+		sliderContainer.appendChild(green);
+		sliderContainer.appendChild(blue);
+
+		container.appendChild(colorDisplay);
+		container.appendChild(sliderContainer);
+		container.appendChild(submitButton);
+
+		redInput.addEventListener('input', () => {
+			rgbValues[0] = parseInt(redInput.value);
+			redText.innerText = `Red ${rgbValues[0]}`;
+			colorDisplay.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+		});
+
+		greenInput.addEventListener('input', () => {
+			rgbValues[1] = parseInt(greenInput.value);
+			greenText.innerText = `Green ${rgbValues[1]}`;
+			colorDisplay.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+		});
+
+		blueInput.addEventListener('input', () => {
+			rgbValues[2] = parseInt(blueInput.value);
+			blueText.innerText = `Blue ${rgbValues[2]}`;
+			colorDisplay.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+		});
+
+		return container;
+	}
+
+	function submit() {
+		const submission = `${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]}`;
+		_level.submit(submission);
+	}
+
+	return {
+		generateHtml,
+		setLevel,
+	};
+};
+
+export { exampleWidget, binaryWidget, binaryConvertWidget, RGBWidget };

@@ -256,7 +256,6 @@ body {
 	font-size: 2em;
 	height: 10%;
 	padding-top: 12px;
-	margin-bottom: -12px;
 }
 
 #level-select-items {
@@ -282,6 +281,7 @@ body {
 }
 
 .level-select-item-topic {
+	padding: 0 16px;
 }
 
 #level-select-open-button {
@@ -444,4 +444,3 @@ body {
 }
 
 /* -- / LEVEL INFO SECTION -- */
-
