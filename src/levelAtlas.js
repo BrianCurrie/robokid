@@ -1,5 +1,10 @@
 import { Level } from './level.js';
-import { binaryWidget, binaryConvertWidget, RGBWidget } from './widgets.js';
+import {
+	binaryWidget,
+	binaryConvertWidget,
+	RGBWidget,
+	commandLineWidget,
+} from './widgets.js';
 
 /** @function levelAtlas
  * @summary Holds all level information.
@@ -40,10 +45,11 @@ function levelAtlas() {
 			'Binary conversion',
 			'How do computers understand English?',
 			new binaryConvertWidget(),
-			['a', 'A', 'Hello world!'],
+			['a', 'A', '123', 'Hello world!'],
 			[
 				'What is "a" in binary?',
 				'What is "A" in binary?',
+				'What is "123" in binary?',
 				'What is "Hello world!" in binary?',
 			],
 			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
@@ -63,6 +69,32 @@ function levelAtlas() {
 				'Make cyan (R:0 G:255 B:255)',
 			],
 			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
+		)
+	);
+
+	levels.push(
+		new Level(
+			3,
+			'Command line',
+			'Learn to use the command line',
+			new commandLineWidget(),
+			['done', 'done', 'done', 'done', 'done', 'done'],
+			[
+				'The command "ls" will show you folders and files, try it out!',
+				'The command "clear" will wipe the display. Give it a try.',
+				'The command "cd" is used to move between folders. Try typing the command "cd Desktop".',
+				'Typing "cd" without a target folder will send you to the home folder. Try it now!',
+				'View the current directory you\'re in by typing the command "pwd".',
+				'You are now in free mode! Explore this system to find secrets, or type "finish" to complete this level.',
+			],
+			`Commands:
+                ls : display folders
+                clear : clear display
+                cd : go to home folder
+                cd .. : go up a folder
+                cd [folderName] : open a folder
+                pwd : display current directory
+            `
 		)
 	);
 

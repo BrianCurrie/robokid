@@ -16,6 +16,8 @@
  * ultimately to complete it.
  */
 
+import { doc } from 'prettier';
+
 const exampleWidget = function () {
 	let _level = null;
 
@@ -323,4 +325,466 @@ const RGBWidget = function () {
 	};
 };
 
-export { exampleWidget, binaryWidget, binaryConvertWidget, RGBWidget };
+const commandLineWidget = function () {
+	let _level = null;
+
+	function setLevel(level) {
+		_level = level;
+	}
+
+	function generateHtml() {
+		const container = document.createElement('div');
+		container.id = 'cmd-widget-container';
+
+		const cmdDisplay = document.createElement('div');
+		cmdDisplay.id = 'cmd-widget-display';
+
+		const cmdOutput = document.createElement('div');
+		cmdOutput.id = 'cmd-widget-output';
+
+		const cmdDir = document.createElement('div');
+		cmdDir.id = 'cmd-widget-dir';
+
+		const cmdDirText = document.createElement('div');
+		cmdDirText.id = 'cmd-widget-dir-text';
+
+		const cmdDirInput = document.createElement('input');
+		cmdDirInput.id = 'cmd-widget-dir-input';
+
+		const cmdDirCaret = document.createElement('div');
+		cmdDirCaret.id = 'cmd-widget-dir-caret';
+
+		const submitButton = document.createElement('div');
+		submitButton.classList.add('submit-button');
+		submitButton.innerText = 'Submit';
+		submitButton.onclick = () => {
+			submit();
+		};
+
+		cmdDir.appendChild(cmdDirText);
+		cmdDir.appendChild(cmdDirInput);
+		cmdDir.appendChild(cmdDirCaret);
+
+		cmdDisplay.appendChild(cmdOutput);
+		cmdDisplay.appendChild(cmdDir);
+
+		container.appendChild(cmdDisplay);
+		container.appendChild(submitButton);
+
+		cmdDirText.innerHTML = `<span class="green">${username}@${computername}</span>:<span class="blue">${currentDir.join(
+			''
+		)}</span>$`;
+
+		clearInterval(blinking);
+		blinking = setInterval(blink, 750);
+
+		function keypress(e) {
+			inputEffect(e.keyCode);
+		}
+
+		function keypressAlt(e) {
+			switch (e.keyCode) {
+				case 8: //Backspace
+					inputEffect(e.keyCode);
+					break;
+			}
+		}
+
+		function keydown(e) {
+			let dirText = document.getElementById('cmd-widget-dir-text');
+			let command = document.getElementById('cmd-widget-dir-input');
+			let output = document.getElementById('cmd-widget-output');
+			if (e.keyCode === 13) {
+				let lastCommand = document.createElement('div');
+				lastCommand.innerHTML = `${dirText.innerHTML} ${command.value.trim()}`;
+				output.prepend(lastCommand);
+
+				if (command.value.trim() === 'ls') {
+					if (levels[0] != 'done') {
+						levels[0] = 'done';
+						submit(levels[0]);
+					}
+					displayFolders(ls(currentFolder));
+				} else if (
+					command.value.trim().split(' ').includes('cd') &&
+					command.value.trim().split(' ').length <= 2
+				) {
+					if (
+						levels[0] === 'done' &&
+						levels[1] === 'done' &&
+						levels[2] !== 'done'
+					) {
+						if (command.value.trim() === 'cd Desktop') {
+							levels[2] = 'done';
+							submit(levels[2]);
+							cd(command.value.trim().split(' ')[1]);
+						} else {
+							let err = document.createElement('div');
+							err.innerText = `Try typing "cd Desktop"`;
+							err.classList.add('errMsg');
+							output.prepend(err);
+						}
+					} else if (
+						levels[0] === 'done' &&
+						levels[1] === 'done' &&
+						levels[2] === 'done' &&
+						levels[3] !== 'done'
+					) {
+						if (command.value.trim() === 'cd') {
+							levels[3] = 'done';
+							submit(levels[3]);
+							cd(command.value.trim().split(' ')[1]);
+						} else {
+							let err = document.createElement('div');
+							err.innerText = `Try typing "cd"`;
+							err.classList.add('errMsg');
+							output.prepend(err);
+						}
+					} else if (
+						levels[0] === 'done' &&
+						levels[1] === 'done' &&
+						levels[2] === 'done' &&
+						levels[3] === 'done'
+					) {
+						cd(command.value.trim().split(' ')[1]);
+					} else {
+						let err = document.createElement('div');
+						err.innerText = `Finish all the tasks before entering free mode`;
+						err.classList.add('errMsg');
+						output.prepend(err);
+					}
+				} else if (command.value.trim() === 'clear') {
+					if (levels[0] === 'done' && levels[1] !== 'done') {
+						levels[1] = 'done';
+						submit(levels[1]);
+					}
+					output.innerHTML = '';
+				} else if (
+					command.value.trim() === 'rm -rf /' ||
+					command.value.trim() === ':(){:|:&};:'
+				) {
+					let err = document.createElement('div');
+					err.innerText = `Calm down there Satan.`;
+					err.classList.add('errMsg');
+					output.prepend(err);
+				} else if (command.value.trim() === 'pwd') {
+					if (
+						levels[0] === 'done' &&
+						levels[1] === 'done' &&
+						levels[2] === 'done' &&
+						levels[3] === 'done' &&
+						levels[4] !== 'done'
+					) {
+						levels[4] = 'done';
+						submit(levels[4]);
+					}
+					pwd();
+				} else if (command.value.trim() === 'finish') {
+					if (
+						levels[0] === 'done' &&
+						levels[1] === 'done' &&
+						levels[2] === 'done' &&
+						levels[3] === 'done' &&
+						levels[4] === 'done'
+					) {
+						levels[5] = 'done';
+						submit(levels[5]);
+					} else {
+						let err = document.createElement('div');
+						err.innerText = `Complete all tasks first!`;
+						err.classList.add('errMsg');
+						output.prepend(err);
+					}
+				} else {
+					let err = document.createElement('div');
+					err.innerText = `${command.value.trim()}: command not found`;
+					err.classList.add('errMsg');
+					output.prepend(err);
+				}
+				command.value = '';
+				resizeInput(command);
+			}
+		}
+
+		if (!listenersExist) {
+			window.addEventListener('keypress', keypress);
+			window.addEventListener('keydown', keypressAlt);
+			window.addEventListener('keydown', keydown);
+
+			listenersExist = true;
+		}
+
+		return container;
+	}
+
+	function ls(folder) {
+		let output = [];
+
+		for (let prop in folder.contents) {
+			output.push([prop, folder.contents[prop].type]);
+		}
+
+		return output;
+	}
+
+	function displayFolders(arr) {
+		if (!Array.isArray(arr)) {
+			return -1;
+		}
+
+		if (arr.length === 0) {
+			return -1;
+		}
+
+		const folderDisplay = document.createElement('div');
+		const output = document.getElementById('cmd-widget-output');
+
+		for (let ele of arr) {
+			let currDiv = document.createElement('span');
+			currDiv.innerText = ele[0] + ' ';
+			if (ele[1] === 'folder') {
+				currDiv.classList.add('folder');
+			}
+			folderDisplay.appendChild(currDiv);
+		}
+
+		output.prepend(folderDisplay);
+	}
+
+	function cd(folder) {
+		const dirText = document.getElementById('cmd-widget-dir-text');
+		const output = document.getElementById('cmd-widget-output');
+		if (folder === undefined || folder === '~') {
+			currentFolder = root;
+			currentDir = ['~'];
+			dirText.innerHTML = `<span class="green">${username}@${computername}</span>:<span class="blue">${currentDir.join(
+				''
+			)}</span>$`;
+			return;
+		}
+
+		if (folder === '..') {
+			if (currentDir.length > 1) {
+				let newFolder = 'root';
+				currentDir.pop();
+				for (let i = 1; i < currentDir.length; i++) {
+					newFolder += `.contents.${currentDir[i].substring(1)}`;
+				}
+				cd();
+				for (let i = 2; i < newFolder.split('.').length; i += 2) {
+					cd(newFolder.split('.')[i]);
+				}
+			} else {
+				currentFolder = root;
+			}
+			dirText.innerHTML = `<span class="green">${username}@${computername}</span>:<span class="blue">${currentDir.join(
+				''
+			)}</span>$`;
+			return;
+		}
+
+		if (currentFolder.contents.hasOwnProperty(folder) === false) {
+			let err = document.createElement('div');
+			err.innerText = `The folder "${folder}" does not exist`;
+			err.classList.add('errMsg');
+			output.prepend(err);
+			return -1;
+		}
+
+		if (currentFolder.contents[folder].type != 'folder') {
+			let err = document.createElement('div');
+			err.innerText = `"${folder}" is a ${currentFolder.contents[folder].type}, not a folder`;
+			err.classList.add('errMsg');
+			output.prepend(err);
+			return -1;
+		}
+
+		currentFolder = currentFolder.contents[folder];
+		currentDir.push(`/${folder}`);
+		dirText.innerHTML = `<span class="green">${username}@${computername}</span>:<span class="blue">${currentDir.join(
+			''
+		)}</span>$`;
+	}
+
+	function pwd() {
+		let dir = document.createElement('div');
+		let output = document.getElementById('cmd-widget-output');
+		dir.innerText = `/home/${username}${currentDir
+			.slice(1, currentDir.length)
+			.join('')}`;
+		dir.classList.add('dir');
+		output.prepend(dir);
+	}
+
+	let root = {
+		type: 'root',
+		contents: {
+			Desktop: {
+				type: 'folder',
+				contents: {
+					Projects: {
+						type: 'folder',
+						contents: {
+							['roboKid.js']: {
+								type: 'file',
+								content: {},
+							},
+							['roboKid.html']: {
+								type: 'file',
+								content: {},
+							},
+							['roboKid.css']: {
+								type: 'file',
+								content: {},
+							},
+							['.gitignore']: {
+								type: 'file',
+								content: {},
+							},
+						},
+					},
+				},
+			},
+			Downloads: {
+				type: 'folder',
+				contents: {
+					['introduction_to_web_development.txt']: {
+						type: 'file',
+						content: {},
+					},
+					['theOdinProjectSecrets.exe']: {
+						type: 'file',
+						content: {},
+					},
+				},
+			},
+			Documents: {
+				type: 'folder',
+				contents: {
+					['node_modules']: {
+						type: 'folder',
+						content: {
+							['oneMillionFiles']: {
+								type: 'file',
+								content: {},
+							},
+						},
+					},
+				},
+			},
+			Videos: {
+				type: 'folder',
+				contents: {
+					['cs50_lecture1.mp4']: {
+						type: 'file',
+						content: {},
+					},
+					['react_tutorial.mp4']: {
+						type: 'file',
+						content: {},
+					},
+				},
+			},
+			Music: {
+				type: 'folder',
+				contents: {
+					['DOOMSoundtrack.mp3']: {
+						type: 'file',
+						content: {},
+					},
+					['KommSusserTod.mp3']: {
+						type: 'file',
+						content: {},
+					},
+					['NightcoreMix583WeebEdition.mp3']: {
+						type: 'file',
+						content: {},
+					},
+				},
+			},
+			Pictures: {
+				type: 'folder',
+				contents: {
+					['DoILookLikeIKnowWhatAJpgIs.jpg']: {
+						type: 'file',
+						content: {},
+					},
+					['HomeworkCheatsheet.png']: {
+						type: 'file',
+						content: {},
+					},
+					['PicturesOfFriends']: {
+						type: 'folder',
+						content: {},
+					},
+				},
+			},
+		},
+	};
+
+	const username = 'robokid';
+	const computername = 'systemName';
+	let currentFolder = root;
+	let currentDir = ['~'];
+	let blinking;
+	let listenersExist = false;
+
+	let levels = ['-1', '-1', '-1', '-1', '-1', '-1'];
+
+	function blink() {
+		let caret = document.getElementById('cmd-widget-dir-caret');
+		if (caret != null) {
+			if (caret.style.visibility === 'visible') {
+				caret.style.visibility = 'hidden';
+			} else {
+				caret.style.visibility = 'visible';
+			}
+		} else {
+			clearInterval(blinking);
+		}
+	}
+
+	function inputEffect(character) {
+		let caret = document.getElementById('cmd-widget-dir-caret');
+		let input = document.getElementById('cmd-widget-dir-input');
+		if (caret != null && input != null) {
+			switch (character) {
+				case 8: //Backspace
+					input.value = input.value.slice(0, -1);
+					break;
+				default:
+					input.value = input.value + String.fromCharCode(character);
+			}
+			clearInterval(blinking);
+			caret.style.visibility = 'visible';
+			resizeInput(input);
+			blinking = setInterval(blink, 750);
+		}
+	}
+
+	//Magic resize function
+	function resizeInput(input) {
+		let canvas = document.createElement('canvas');
+		let context = canvas.getContext('2d');
+		context.font = '16px Ubuntu';
+		let width = Math.ceil(context.measureText(input.value).width) + 5;
+		input.style.width = `${width}px`;
+	}
+
+	function submit(submission) {
+		_level.submit(submission);
+	}
+
+	return {
+		generateHtml,
+		setLevel,
+	};
+};
+
+export {
+	exampleWidget,
+	binaryWidget,
+	binaryConvertWidget,
+	RGBWidget,
+	commandLineWidget,
+};
