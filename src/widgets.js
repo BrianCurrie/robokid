@@ -16,8 +16,6 @@
  * ultimately to complete it.
  */
 
-import { doc } from 'prettier';
-
 const exampleWidget = function () {
 	let _level = null;
 
@@ -354,13 +352,6 @@ const commandLineWidget = function () {
 		const cmdDirCaret = document.createElement('div');
 		cmdDirCaret.id = 'cmd-widget-dir-caret';
 
-		const submitButton = document.createElement('div');
-		submitButton.classList.add('submit-button');
-		submitButton.innerText = 'Submit';
-		submitButton.onclick = () => {
-			submit();
-		};
-
 		cmdDir.appendChild(cmdDirText);
 		cmdDir.appendChild(cmdDirInput);
 		cmdDir.appendChild(cmdDirCaret);
@@ -369,7 +360,6 @@ const commandLineWidget = function () {
 		cmdDisplay.appendChild(cmdDir);
 
 		container.appendChild(cmdDisplay);
-		container.appendChild(submitButton);
 
 		cmdDirText.innerHTML = `<span class="green">${username}@${computername}</span>:<span class="blue">${currentDir.join(
 			''
