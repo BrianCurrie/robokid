@@ -192,6 +192,12 @@ const binaryConvertWidget = function () {
 			output.innerText = textToBinary(binary);
 		});
 
+		input.addEventListener('keypress', (e) => {
+			if (e.key === 'Enter') {
+				submit();
+			}
+		});
+
 		return container;
 	}
 
@@ -211,6 +217,8 @@ const binaryConvertWidget = function () {
 
 	function submit() {
 		const submission = document.getElementById('convert-widget-input').value;
+		document.getElementById('convert-widget-input').value = '';
+		document.getElementById('convert-widget-output').innerText = '';
 		_level.submit(submission);
 	}
 

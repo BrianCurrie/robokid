@@ -9,7 +9,7 @@ const DialogueManager = (() => {
 	let _flashingMessageTimerId = null;
 	let _textCrawlEnabled = true;
 	let _textCrawlInterval = 40;
-	let _speechEnabled = true;
+	let _speechEnabled = false; //Default off for dev
 	let _speechRate = 1;
 
 	/* ------------------------ */

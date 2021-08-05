@@ -33,17 +33,18 @@ function levelAtlas() {
 			'Binary',
 			'How do computers think?',
 			new binaryWidget(),
-			['1', '5', '255', '81', '198'],
+			['1', '5', '255', '81', '198', '234'],
 			[
-				'Write 1 in binary',
-				'Write 5 in binary',
-				'Write 255 in binary',
-				'Write 81 in binary',
-				'Write 198 in binary',
+				'Set 1 in binary',
+				'Set 5 in binary',
+				'Set 255 in binary',
+				'Set 81 in binary',
+				'Set 198 in binary',
+				'Continue to experiement, or set 234 in binary and click submit to end this level.',
 			],
 			`Every computer thinks in 1s and 0s, also known as binary.
 
-            Binary can be used to represent the numbers we are already familiar with!
+            Binary can be used to represent the decimal numbers which we use everyday!
             
             This level provides a tool that has eight "bits" which you can toggle on(1) or off(0) by pressing plus or minus buttons.
 
@@ -66,7 +67,7 @@ function levelAtlas() {
 				'What is "Hello world!" in binary?',
 				'Type whatever you want to see how the computer reads it, or type "finish" and click submit to end the level.',
 			],
-			`If computers can only think in binary, how can they understand what we type in English?
+			`If computers can only think in binary how can they understand what we type in English?
             
             Computer scientists came up with a clever way to solve this problem.
 
@@ -89,9 +90,7 @@ function levelAtlas() {
 				'Set every slider to 255, what color do we get?',
 				'Continue to experiment with making new colors, or set every slider to 0 and click submit to finish this level.',
 			],
-			`Similar to how we can display English as binary, we can do the same with colors!
-            
-            One of the most common ways to represent color to a computer is by using RGB, which stands for Red Green Blue.
+			`One of the most common ways to represent color to a computer is by using RGB, which stands for Red Green Blue.
 
             RGB consists of three numbers, each one ranging from 0-255. These numbers determine how much of each color we add to the mix to get a final output color.
 
@@ -104,7 +103,7 @@ function levelAtlas() {
 		new Level(
 			3,
 			'Command line',
-			'Learn to navigate a computer without a mouse!',
+			'How do you navigate a computer without a mouse?',
 			new commandLineWidget(),
 			['done', 'done', 'done', 'done', 'done', 'done'],
 			[
@@ -131,7 +130,8 @@ function levelAtlas() {
 	);
 
 	// Dev testing widget.
-	levels.push(
+	/*
+    levels.push(
 		new Level(
 			levels.length,
 			'Testing',
@@ -152,7 +152,7 @@ function levelAtlas() {
 			],
 			'LEVEL INFO GOES HERE, IT CAN BE AN HTML ELEMENT OBJECT TOO'
 		)
-	);
+	); */
 
 	return levels;
 }
