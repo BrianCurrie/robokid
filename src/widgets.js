@@ -198,7 +198,13 @@ const binaryConvertWidget = function () {
 	function textToBinary(text) {
 		let output = '';
 		for (let i = 0; i < text.length; i++) {
-			output += text.charCodeAt(i).toString(2) + ' ';
+			let temp = text.charCodeAt(i).toString(2);
+			if (temp.length < 8) {
+				for (let j = temp.length; j < 8; j++) {
+					temp = '0' + temp;
+				}
+			}
+			output += temp + ' ';
 		}
 		return output.trim();
 	}
