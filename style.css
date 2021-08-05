@@ -359,6 +359,10 @@ body {
 }
 
 #level-info-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	line-height: 1.4;
 	position: absolute;
 	width: 688px;
 	height: 496px;
