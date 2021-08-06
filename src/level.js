@@ -12,11 +12,24 @@ import { GameplayManager } from './gameplayManager.js';
  * @param {any} _widget An instance of the widget the level uses.
  * @param {Array} _answers An array of answers the level uses for progression.
  * @param {Array} _dialogue An array of strings the level uses for dialogue.
+ * @param {Array} _correctResponses Dialogue that's read when you answer
+ * the stage correctly.
+ * @param {any} _info Information about the level.
  */
-function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
+function Level(
+	_id,
+	_title,
+	_topic,
+	_widget,
+	_answers,
+	_dialogue,
+	_correctResponses,
+	_info
+) {
 	let _currentStage = 0;
 	let _locked = false;
 	let _completed = false;
+	let _firstEntry = true;
 
 	/* ------------------------ */
 	/*                          */
@@ -48,6 +61,14 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 		return _completed;
 	}
 
+	/** @function isFirstEntry
+	 * @summary Checks if the level has been entered for the first time yet.
+	 * @access public
+	 */
+	function isFirstEntry() {
+		return _firstEntry;
+	}
+
 	/** @function generateHtml
 	 * @summary Generates html representing this Level as a level select block.
 	 * @access public
@@ -68,14 +89,26 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 		root.appendChild(title);
 		root.appendChild(topic);
 
+		//if (_completed) {
+		//	root.classList.add('level-select-item-completed');
+		//} else if (!_locked) {
+		//	root.onclick = () => {
+		//		GameplayManager.beginLevel(_id);
+		//	};
+		//} else {
+		//	root.classList.add('level-select-item-locked');
+		//}
+
 		if (_completed) {
-			root.classList.add('level-select-item-completed');
-		} else if (!_locked) {
 			root.onclick = () => {
+				_completed = false;
+				GameplayManager.resetLevel(_id);
 				GameplayManager.beginLevel(_id);
 			};
 		} else {
-			root.classList.add('level-select-item-locked');
+			root.onclick = () => {
+				GameplayManager.beginLevel(_id);
+			};
 		}
 
 		return root;
@@ -92,12 +125,12 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 		if (_completed) {
 			console.log('This level is already complete.');
 		} else if (submission == _answers[_currentStage]) {
+			DialogueManager.flashMessage(_correctResponses[_currentStage], 2000);
 			_currentStage++;
 			if (_currentStage > _answers.length - 1) {
 				finish();
 			} else {
 				DialogueManager.flushMessageQueue();
-				DialogueManager.flashMessage('Correct answer!', 2000);
 				DialogueManager.enqueue(_dialogue[_currentStage]);
 			}
 		} else {
@@ -126,6 +159,7 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 		}
 		DialogueManager.flushMessageQueue();
 		DialogueManager.enqueue(_dialogue[_currentStage]);
+		_firstEntry = false;
 	}
 
 	/* ------------------------- */
@@ -155,6 +189,7 @@ function Level(_id, _title, _topic, _widget, _answers, _dialogue, _info) {
 
 	return {
 		getId,
+		isFirstEntry,
 		generateHtml,
 		begin,
 		submit,

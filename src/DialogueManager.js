@@ -11,6 +11,8 @@ const DialogueManager = (() => {
 	let _textCrawlInterval = 40;
 	let _speechEnabled = false; //Default off for dev
 	let _speechRate = 1;
+	let _voices = null;
+	let _voiceId = null;
 
 	/* ------------------------ */
 	/*                          */
@@ -125,6 +127,13 @@ const DialogueManager = (() => {
 	 */
 	function init() {
 		_container.onclick = () => progressDialogue();
+
+		speechSynthesis.addEventListener('voiceschanged', () => {
+			_voices = speechSynthesis.getVoices();
+			if (_voices.length >= 5) {
+				_voiceId = 4;
+			}
+		});
 	}
 
 	/** @function progressDialogue
@@ -191,6 +200,9 @@ const DialogueManager = (() => {
 			}
 			console.log('should speak');
 			const ssu = new SpeechSynthesisUtterance();
+			if (_voiceId != null) {
+				ssu.voice = _voices[_voiceId];
+			}
 			ssu.text = message;
 			ssu.rate = _speechRate;
 			ssu.pitch = 2;
