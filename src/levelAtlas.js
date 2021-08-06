@@ -44,12 +44,12 @@ function levelAtlas() {
 				'Continue to experiement, or set 234 in binary and click submit to end this level.',
 			],
 			[
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
+				"That's right!",
+				'Correct!',
+				'Right again!',
+				'Good job!',
+				'Right!',
+				'Correct!',
 			],
 			`Every computer thinks in 1s and 0s, also known as binary.
 
@@ -77,10 +77,10 @@ function levelAtlas() {
 				'Type whatever you want to see how the computer reads it, or type "finish" and click submit to end the level.',
 			],
 			[
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
+				"That's right!",
+				'Good job!',
+				'Correct!',
+				"A classic, that's right!",
 				'Correct answer!',
 			],
 			`If computers can only think in binary how can they understand what we type in English?
@@ -107,10 +107,10 @@ function levelAtlas() {
 				'Continue to experiment with making new colors, or set every slider to 0 and click submit to finish this level.',
 			],
 			[
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
+				'Good job!',
+				"My favorite color, that's right!",
+				'Correct!',
+				'We get white!',
 				'Correct answer!',
 			],
 			`One of the most common ways to represent color to a computer is by using RGB, which stands for Red Green Blue.
@@ -138,11 +138,11 @@ function levelAtlas() {
 				'You are now in free mode! Explore this system to find secrets, or type "finish" to complete this level.',
 			],
 			[
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
-				'Correct answer!',
+				'Look at all those folders!',
+				'Nice!',
+				'Beep boop, right again!',
+				"You're good at this!",
+				'Good job!',
 				'Correct answer!',
 			],
 			`The command line is a user interface for navigating a computers folders and files.
