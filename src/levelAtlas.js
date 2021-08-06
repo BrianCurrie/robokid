@@ -170,7 +170,9 @@ function levelAtlas() {
 			[
 				'Good luck on the quiz! You can go back and reference the other levels if you get stuck.',
 			],
-			`This is placeholder text for the quiz level
+			['Quiz finished!'],
+			`This quiz will test everything you have learned so far.
+            Feel free to revisit the other levels to help you answer each of the questions, your progress will be saved!
             `
 		)
 	);

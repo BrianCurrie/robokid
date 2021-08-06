@@ -830,7 +830,7 @@ const quizWidget = function () {
 				currentQuestion++;
 				if (questions[currentQuestion] === undefined) {
 					answersContainerEle.innerHTML = '';
-					questionEle.innerText = `Quiz finished. Final score: ${score}`;
+					questionEle.innerText = `Quiz finished. Final score: ${score}/${answers.length}`;
 
 					const submitButton = document.createElement('div');
 					submitButton.classList.add('submit-button');
@@ -840,6 +840,9 @@ const quizWidget = function () {
 					};
 
 					answersContainerEle.appendChild(submitButton);
+
+					score = 0;
+					currentQuestion = 0;
 				} else {
 					displayQuestion(questionEle, answersContainerEle);
 				}
@@ -850,25 +853,122 @@ const quizWidget = function () {
 	let score = 0;
 	let currentQuestion = 0;
 
-	const questions = ['The answer is 3', 'Question 2'];
+	const questions = [
+		'What color is R:255 G:255 B:0?',
+		'What is the largest number you can make with 8 binary bits?',
+		'What does the command "ls" do?',
+		'If all the numbers in RGB are set to 0, what color would that make?',
+		'If 11 in binary is equal to 3, what is 111 in binary equal to?',
+		'Are "a" and "A" represented the same in binary?',
+		'What command would we use if we wanted to open the "Pictures" folder?',
+		'How many bits would we need to represent 47 in binary?',
+	];
 	const answers = [
 		[
 			{
-				val: 'Answer 1',
+				val: 'Red',
 				correct: false,
 			},
 			{
-				val: 'Answer 2',
+				val: 'Pink',
 				correct: false,
 			},
 			{
-				val: 'Answer 3',
+				val: 'Yellow',
 				correct: true,
 			},
 		],
 		[
 			{
-				val: 'Only 1 answer',
+				val: '255',
+				correct: true,
+			},
+			{
+				val: '64',
+				correct: false,
+			},
+			{
+				val: '1028',
+				correct: false,
+			},
+		],
+		[
+			{
+				val: 'Displays folders and files',
+				correct: true,
+			},
+			{
+				val: 'Clears the screen',
+				correct: false,
+			},
+			{
+				val: 'Changes what folder you are in',
+				correct: false,
+			},
+		],
+		[
+			{
+				val: 'White',
+				correct: false,
+			},
+			{
+				val: 'Black',
+				correct: true,
+			},
+			{
+				val: 'Orange',
+				correct: false,
+			},
+		],
+		[
+			{
+				val: '4',
+				correct: false,
+			},
+			{
+				val: '6',
+				correct: false,
+			},
+			{
+				val: '7',
+				correct: true,
+			},
+		],
+		[
+			{
+				val: 'Yes',
+				correct: false,
+			},
+			{
+				val: 'No',
+				correct: true,
+			},
+		],
+		[
+			{
+				val: 'cd',
+				correct: false,
+			},
+			{
+				val: 'Pictures',
+				correct: false,
+			},
+			{
+				val: 'cd Pictures',
+				correct: true,
+			},
+		],
+		[
+			{
+				val: '4',
+				correct: false,
+			},
+			{
+				val: '5',
+				correct: false,
+			},
+			{
+				val: '6',
 				correct: true,
 			},
 		],
