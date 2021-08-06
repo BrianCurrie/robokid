@@ -4,6 +4,7 @@ import {
 	binaryConvertWidget,
 	RGBWidget,
 	commandLineWidget,
+	quizWidget,
 } from './widgets.js';
 
 /** @function levelAtlas
@@ -125,6 +126,22 @@ function levelAtlas() {
                 cd .. - go up a folder
                 cd [folderName] - open a folder
                 pwd - display current directory
+            `
+		)
+	);
+
+	levels.push(
+		new Level(
+			4,
+			'Final Quiz',
+			'What have you learned?',
+			new quizWidget(),
+			['finished'],
+			[
+				'Good luck on the quiz! You can go back and reference the other levels if you get stuck.',
+			],
+			`
+            Placeholder information
             `
 		)
 	);

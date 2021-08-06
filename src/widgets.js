@@ -785,10 +785,110 @@ const commandLineWidget = function () {
 	};
 };
 
+const quizWidget = function () {
+	let _level = null;
+
+	function setLevel(level) {
+		_level = level;
+	}
+
+	function generateHtml() {
+		const container = document.createElement('div');
+		container.id = 'quiz-widget-container';
+
+		const question = document.createElement('div');
+		question.id = 'quiz-widget-question';
+
+		const answerContainer = document.createElement('div');
+		answerContainer.id = 'quiz-widget-answer-container';
+
+		container.appendChild(question);
+		container.appendChild(answerContainer);
+
+		displayQuestion(question, answerContainer);
+
+		return container;
+	}
+
+	function displayQuestion(questionEle, answersContainerEle) {
+		questionEle.innerText = questions[currentQuestion];
+		answersContainerEle.innerHTML = '';
+
+		for (let answer of answers[currentQuestion]) {
+			const answerEle = document.createElement('div');
+			answerEle.innerText = `${answer.val}`;
+			answerEle.classList.add('quiz-widget-answer');
+			answersContainerEle.appendChild(answerEle);
+
+			answerEle.addEventListener('click', () => {
+				if (answer.correct) {
+					console.log('Correct!');
+					score++;
+				} else {
+					console.log('Wrong');
+				}
+				currentQuestion++;
+				if (questions[currentQuestion] === undefined) {
+					answersContainerEle.innerHTML = '';
+					questionEle.innerText = `Quiz finished. Final score: ${score}`;
+
+					const submitButton = document.createElement('div');
+					submitButton.classList.add('submit-button');
+					submitButton.innerText = 'Submit';
+					submitButton.onclick = () => {
+						submit();
+					};
+
+					answersContainerEle.appendChild(submitButton);
+				} else {
+					displayQuestion(questionEle, answersContainerEle);
+				}
+			});
+		}
+	}
+
+	let score = 0;
+	let currentQuestion = 0;
+
+	const questions = ['The answer is 3', 'Question 2'];
+	const answers = [
+		[
+			{
+				val: 'Answer 1',
+				correct: false,
+			},
+			{
+				val: 'Answer 2',
+				correct: false,
+			},
+			{
+				val: 'Answer 3',
+				correct: true,
+			},
+		],
+		[
+			{
+				val: 'Only 1 answer',
+				correct: true,
+			},
+		],
+	];
+
+	function submit() {
+		_level.submit('finished');
+	}
+
+	return {
+		generateHtml,
+		setLevel,
+	};
+};
+
 export {
 	exampleWidget,
 	binaryWidget,
 	binaryConvertWidget,
 	RGBWidget,
 	commandLineWidget,
+	quizWidget,
 };
