@@ -103,12 +103,12 @@ function Actor(_element) {
 	function jumpAction() {
 		_action = setInterval(function () {
 			if (_posy > -16) {
-				_posy -= 2;
+				_posy -= 0.5;
 			} else {
 				clearInterval(_action);
 				_action = setInterval(() => {
 					if (_posy < 0) {
-						_posy += 2;
+						_posy += 0.5;
 					} else {
 						clearInterval(_action);
 					}

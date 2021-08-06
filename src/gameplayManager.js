@@ -28,8 +28,13 @@ const GameplayManager = (() => {
 	 * @param {number} id The id of the level to begin.
 	 */
 	function beginLevel(id) {
-		_levels[id].begin(_levels[id]);
 		exitLevelSelect();
+		if (_levels[id].isFirstEntry()) {
+			setTimeout(() => {
+				enterLevelInfo();
+			}, 1000);
+		}
+		_levels[id].begin(_levels[id]);
 	}
 
 	/** @function finishLevel
@@ -40,6 +45,14 @@ const GameplayManager = (() => {
 	function finishLevel() {
 		generateLevelSelectHtml();
 		enterLevelSelect();
+	}
+
+	/** @function resetLevel
+	 * @summary Resets the level to it's initial state as per levelAtlas.
+	 * @param {number} id The level's id to reset.
+	 */
+	function resetLevel(id) {
+		_levels[id] = levelAtlas()[id];
 	}
 
 	/** @function setDialogue
@@ -151,6 +164,7 @@ const GameplayManager = (() => {
 	return {
 		beginLevel,
 		finishLevel,
+		resetLevel,
 		setDialogue,
 	};
 })();

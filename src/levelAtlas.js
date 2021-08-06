@@ -42,6 +42,14 @@ function levelAtlas() {
 				'Set 198 in binary',
 				'Continue to experiement, or set 234 in binary and click submit to end this level.',
 			],
+			[
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+			],
 			`Every computer thinks in 1s and 0s, also known as binary.
 
             Binary can be used to represent the decimal numbers which we use everyday!
@@ -67,6 +75,13 @@ function levelAtlas() {
 				'What is "Hello world!" in binary?',
 				'Type whatever you want to see how the computer reads it, or type "finish" and click submit to end the level.',
 			],
+			[
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+			],
 			`If computers can only think in binary how can they understand what we type in English?
             
             Computer scientists came up with a clever way to solve this problem.
@@ -89,6 +104,13 @@ function levelAtlas() {
 				'Make cyan (R:0 G:255 B:255)',
 				'Set every slider to 255, what color do we get?',
 				'Continue to experiment with making new colors, or set every slider to 0 and click submit to finish this level.',
+			],
+			[
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
 			],
 			`One of the most common ways to represent color to a computer is by using RGB, which stands for Red Green Blue.
 
@@ -113,6 +135,14 @@ function levelAtlas() {
 				'Typing "cd" without a target folder will send you to the home folder. Try it now!',
 				'View the current directory you\'re in by typing the command "pwd"',
 				'You are now in free mode! Explore this system to find secrets, or type "finish" to complete this level.',
+			],
+			[
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
+				'Correct answer!',
 			],
 			`The command line is a user interface for navigating a computers folders and files.
 
