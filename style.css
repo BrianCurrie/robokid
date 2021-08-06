@@ -107,7 +107,7 @@ body {
 
 .settings-options {
 	display: flex;
-	justify-content: right;
+	flex-direction: row-reverse;
 }
 
 .settings-options div {

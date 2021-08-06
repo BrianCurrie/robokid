@@ -209,3 +209,34 @@
 .errMsg {
 	color: #ffffff;
 }
+
+/*******
+    Quiz widget
+********/
+
+#quiz-widget-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+#quiz-widget-question {
+	padding: 25px 60px;
+	margin: 20px;
+	font-size: 2rem;
+	border: 2px solid black;
+	background-color: #2f362d;
+	border-radius: 5px;
+}
+
+.quiz-widget-answer {
+	padding: 5px 15px;
+	margin: 5px;
+	border: 2px solid black;
+	background-color: #2f362d;
+	border-radius: 5px;
+	cursor: pointer;
+}
