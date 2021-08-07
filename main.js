@@ -20,6 +20,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/GameInfoManager.js":
+/*!********************************!*\
+  !*** ./src/GameInfoManager.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GameInfoManager\": () => (/* binding */ GameInfoManager)\n/* harmony export */ });\nconst GameInfoManager = (() => {\n\t/* ------------------------- */\n\t/*                           */\n\t/*     PRIVATE FUNCTIONS     */\n\t/*                           */\n\t/* ------------------------- */\n\n\t/** @function init\n\t * @summary Initializes the game info manager.\n\t * @access private\n\t */\n\tfunction init() {\n\t\tsetOnclicks();\n\t}\n\n\t/** @function setOnclicks\n\t * @summary Sets all required onclicks.\n\t * @access private\n\t */\n\tfunction setOnclicks() {\n\t\tconst $ = (id) => document.getElementById(id);\n\n\t\t$('open-game-info-button').onclick = () => {\n\t\t\topenGameInfo();\n\t\t};\n\n\t\t$('close-game-info-button').onclick = () => {\n\t\t\tcloseGameInfo();\n\t\t};\n\t}\n\n\t/** @function openGameInfo\n\t * @summary Opens the game info window.\n\t * @access private\n\t */\n\tfunction openGameInfo() {\n\t\tdocument.getElementById('game-info-container').style.display = '';\n\t}\n\n\t/** @function closeGameInfo\n\t * @summary Closes the game info window.\n\t * @access private\n\t */\n\tfunction closeGameInfo() {\n\t\tdocument.getElementById('game-info-container').style.display = 'none';\n\t}\n\n\t/* ---------------- */\n\t/*                  */\n\t/*     FINALIZE     */\n\t/*                  */\n\t/* ---------------- */\n\n\tinit();\n})();\n\n\n\n\n//# sourceURL=webpack://gamejam/./src/GameInfoManager.js?");
+
+/***/ }),
+
 /***/ "./src/gameplayManager.js":
 /*!********************************!*\
   !*** ./src/gameplayManager.js ***!
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gameplayManager_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameplayManager.js */ \"./src/gameplayManager.js\");\n/* harmony import */ var _DialogueManager_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DialogueManager.js */ \"./src/DialogueManager.js\");\n/* harmony import */ var _level_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./level.js */ \"./src/level.js\");\n/* harmony import */ var _levelAtlas_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./levelAtlas.js */ \"./src/levelAtlas.js\");\n/* harmony import */ var _portrait_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./portrait.js */ \"./src/portrait.js\");\n/* harmony import */ var _scene_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scene.js */ \"./src/scene.js\");\n/* harmony import */ var _settings_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./settings.js */ \"./src/settings.js\");\n/* harmony import */ var _widgets_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./widgets.js */ \"./src/widgets.js\");\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://gamejam/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gameplayManager_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameplayManager.js */ \"./src/gameplayManager.js\");\n/* harmony import */ var _DialogueManager_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DialogueManager.js */ \"./src/DialogueManager.js\");\n/* harmony import */ var _level_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./level.js */ \"./src/level.js\");\n/* harmony import */ var _levelAtlas_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./levelAtlas.js */ \"./src/levelAtlas.js\");\n/* harmony import */ var _portrait_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./portrait.js */ \"./src/portrait.js\");\n/* harmony import */ var _scene_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scene.js */ \"./src/scene.js\");\n/* harmony import */ var _settings_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./settings.js */ \"./src/settings.js\");\n/* harmony import */ var _GameInfoManager_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GameInfoManager.js */ \"./src/GameInfoManager.js\");\n/* harmony import */ var _widgets_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./widgets.js */ \"./src/widgets.js\");\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://gamejam/./src/index.js?");
 
 /***/ }),
 
