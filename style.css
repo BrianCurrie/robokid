@@ -61,38 +61,49 @@ body {
 	align-items: center;
 }
 
+#open-game-info-button,
 #open-settings-button {
 	position: absolute;
 	cursor: pointer;
 	z-index: 1;
 }
+#open-game-info-button {
+	left: 64px;
+}
 
-#settings-container {
+.popup-container {
 	position: absolute;
 	width: 512px;
 	height: 512px;
-	background-image: url('assets/settings.png');
 	color: #51ab2f;
 	z-index: 2;
 }
 
-#settings-top {
+#game-info-container {
+	background-image: url('assets/info-popup.png');
+}
+
+#settings-container {
+	background-image: url('assets/settings.png');
+}
+
+.popup-top  {
 	height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-#settings-title {
+.popup-title  {
 	padding-left: 16px;
 	font-size: 1.5em;
 }
 
-#close-settings-button {
+.popup-close-button  {
 	cursor: pointer;
 }
 
-#settings-bottom {
+.popup-bottom {
 	padding: 16px;
 }
 
@@ -107,7 +118,7 @@ body {
 
 .settings-options {
 	display: flex;
-	flex-direction: row-reverse;
+	justify-content: flex-end;
 }
 
 .settings-options div {
@@ -121,6 +132,14 @@ body {
 
 .settings-options div.selected {
 	background-color: #186323;
+}
+
+#game-info-bottom {
+	text-align: center;
+}
+
+#game-info-bottom a {
+	color: inherit;
 }
 
 .font-pixel {
@@ -157,6 +176,16 @@ body {
 .font-dyslexic span {
 	position: relative;
 	top: -3px;
+}
+
+#toggle-bgm-button {
+	position: absolute;
+	right: 0px;
+	z-index: 1;
+}
+
+#toggle-bgm-button:hover {
+	cursor: pointer;
 }
 
 #game-container {
