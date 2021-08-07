@@ -178,6 +178,16 @@ body {
 	top: -3px;
 }
 
+#toggle-bgm-button {
+	position: absolute;
+	right: 0px;
+	z-index: 1;
+}
+
+#toggle-bgm-button:hover {
+	cursor: pointer;
+}
+
 #game-container {
 	position: relative;
 	width: 1024px;

@@ -206,6 +206,7 @@ const DialogueManager = (() => {
 			ssu.text = message;
 			ssu.rate = _speechRate;
 			ssu.pitch = 2;
+			ssu.volume = 0.3;
 			speechSynthesis.speak(ssu);
 		}
 	}
