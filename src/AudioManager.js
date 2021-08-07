@@ -20,6 +20,10 @@ const AudioManager = (() => {
 	}
 
 	init();
+
+	return {
+		toggleBgm,
+	};
 })();
 
 export { AudioManager };

@@ -8,3 +8,8 @@ import { SettingsManager } from './settings.js';
 import { GameInfoManager } from './GameInfoManager.js';
 import { AudioManager } from './AudioManager.js';
 import { exampleWidget, binaryWidget, binaryConvertWidget } from './widgets.js';
+
+document.getElementById('onstart-play').onclick = () => {
+	document.getElementById('onstart-container').style.display = 'none';
+	AudioManager.toggleBgm();
+};

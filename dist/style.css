@@ -485,3 +485,39 @@ body {
 }
 
 /* -- / LEVEL INFO SECTION -- */
+
+/* -- ONSTART POPUP --*/
+
+#onstart-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#onstart-cover {
+	position: absolute;
+	background-color: hsla(0, 0%, 0%, 0.75);
+	width: 100%;
+	height: 100%;
+}
+
+#onstart-popup {
+	position: absolute;
+	background-image: url('./assets/info-popup.png');
+	width: 512px;
+	height: 512px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column
+}
+
+#onstart-play {
+	cursor: pointer;
+}
+
+/* -- / ONSTART POPUP --*/
