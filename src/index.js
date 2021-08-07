@@ -5,4 +5,6 @@ import { levelAtlas } from './levelAtlas.js';
 import { PortraitManager } from './portrait.js';
 import { Actor, Scene } from './scene.js';
 import { SettingsManager } from './settings.js';
+import { GameInfoManager } from './GameInfoManager.js';
+import { AudioManager } from './AudioManager.js';
 import { exampleWidget, binaryWidget, binaryConvertWidget } from './widgets.js';
