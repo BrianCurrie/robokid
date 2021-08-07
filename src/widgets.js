@@ -822,10 +822,10 @@ const quizWidget = function () {
 
 			answerEle.addEventListener('click', () => {
 				if (answer.correct) {
-					console.log('Correct!');
+					//console.log('Correct!');
 					score++;
 				} else {
-					console.log('Wrong');
+					//console.log('Wrong');
 				}
 				currentQuestion++;
 				if (questions[currentQuestion] === undefined) {

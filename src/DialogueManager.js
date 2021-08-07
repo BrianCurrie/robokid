@@ -198,7 +198,7 @@ const DialogueManager = (() => {
 			if (speechSynthesis.speaking) {
 				speechSynthesis.cancel();
 			}
-			console.log('should speak');
+			//console.log('should speak');
 			const ssu = new SpeechSynthesisUtterance();
 			if (_voiceId != null) {
 				ssu.voice = _voices[_voiceId];

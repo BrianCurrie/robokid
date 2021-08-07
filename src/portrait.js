@@ -27,7 +27,7 @@ const PortraitManager = (() => {
 				trackBone(i);
 			}, interval);
 		}
-		console.log(`Bone tracking initialized with interval of ${interval}`);
+		//console.log(`Bone tracking initialized with interval of ${interval}`);
 	};
 
 	/** @function enableAnimations

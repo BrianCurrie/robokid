@@ -123,7 +123,7 @@ function Level(
 	 */
 	function submit(submission) {
 		if (_completed) {
-			console.log('This level is already complete.');
+			//console.log('This level is already complete.');
 		} else if (submission == _answers[_currentStage]) {
 			DialogueManager.flashMessage(_correctResponses[_currentStage], 2000);
 			_currentStage++;
@@ -174,7 +174,7 @@ function Level(
 	 * @access private
 	 */
 	function finish() {
-		console.log('Level finished.');
+		//console.log('Level finished.');
 		_completed = true;
 		DialogueManager.flushMessageQueue();
 		DialogueManager.flashMessage(`Level ${_id} complete, good job!`);

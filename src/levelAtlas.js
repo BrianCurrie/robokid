@@ -53,7 +53,7 @@ function levelAtlas() {
 			],
 			`Every computer thinks in 1s and 0s, also known as binary.
 
-            Binary can be used to represent the decimal numbers which we use everyday!
+            Binary can be used to represent the decimal numbers that we use everyday!
             
             This level provides a tool that has eight "bits" which you can toggle on(1) or off(0) by pressing plus or minus buttons.
 

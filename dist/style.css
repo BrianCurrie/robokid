@@ -87,19 +87,19 @@ body {
 	background-image: url('assets/settings.png');
 }
 
-.popup-top  {
+.popup-top {
 	height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.popup-title  {
+.popup-title {
 	padding-left: 16px;
 	font-size: 1.5em;
 }
 
-.popup-close-button  {
+.popup-close-button {
 	cursor: pointer;
 }
 
@@ -513,11 +513,24 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column
+	flex-direction: column;
+	text-align: center;
+	padding: 0 30px;
 }
 
 #onstart-play {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
+	background-image: url('./assets/widgets/large-button.png');
+	width: 128px;
+	height: 64px;
+	margin-top: 20px;
+}
+
+#onstart-play:active {
+	background-image: url('./assets/widgets/large-button-pressed.png');
 }
 
 /* -- / ONSTART POPUP --*/
