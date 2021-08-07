@@ -135,7 +135,7 @@ function levelAtlas() {
 				'The command "cd" is used to move between folders. Try typing the command "cd Desktop"',
 				'Typing "cd" without a target folder will send you to the home folder. Try it now!',
 				'View the current directory you\'re in by typing the command "pwd"',
-				'You are now in free mode! Explore this system to find secrets, or type "finish" to complete this level.',
+				'You are now in free mode! Explore this system more, or type "finish" to complete this level.',
 			],
 			[
 				'Look at all those folders!',
