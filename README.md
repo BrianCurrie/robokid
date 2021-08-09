@@ -1,5 +1,5 @@
 # robokid
-[Live Demo ✔️](https://briancurrie.github.io/top-gamejam/)
+[Live Demo ✔️](https://briancurrie.github.io/robokid/)
 
 An educational game for teaching fundamental computer concepts to kids.
 
