@@ -1,12 +1,12 @@
 # robokid
 [Live Demo ✔️](https://briancurrie.github.io/top-gamejam/)
 
-An eduactional game for teaching fundemental computer concepts to kids.
+An educational game for teaching fundamental computer concepts to kids.
 
 ![Cover image](https://i.imgur.com/PpgyqpJ.png)
 
 ## Topics
-* Introdction to binary
+* Introduction to binary
 * Converting text to binary
 * Representing color to a computer using RGB
 * Introduction to the command line 
